@@ -2,7 +2,7 @@
     <div class="designer" ref="wrap">
         <Vue3DraggableResizable class="canvasWrap"  :style="{transform:'scale('+scale+')'}" trigger-key="right" :resizable="false" >
             <DraggableContainer class="canvas">
-                <Vue3DraggableResizable :parent-scale-x="scale"   @drag-end="dragend($event,item.id)" :parent-scale-y="scale" class="card" :style="{background:item.color,zIndex:components.length-index}" :x="item.x" :y="item.y" :init-h="100" :init-w="100" v-for="(item,index) in components">
+                <Vue3DraggableResizable :parent-scale-x="scale" :active="true"   @drag-end="dragend($event,item.id)" :parent-scale-y="scale" class="card" :style="{background:item.color,zIndex:components.length-index}" :x="item.x" :y="item.y" :init-h="100" :init-w="100" v-for="(item,index) in components">
                     {{ item.name }}
                 </Vue3DraggableResizable>
             </DraggableContainer>
@@ -36,7 +36,6 @@
                     if(curScale.value>0){
                         curScale.value -= 1
                     }
-
                 }
             }
             watchEffect(()=>{
