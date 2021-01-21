@@ -4,15 +4,11 @@
                 <span>图层</span>
             </div>
         <el-divider style="margin: 0px"></el-divider>
-
         <draggable tag="ul" v-model="list" class="layer_list">
             <template #item="{element}" >
                 <Item :name="element.name" />
             </template>
         </draggable>
-
-
-
     </div>
 </template>
 
@@ -21,6 +17,7 @@
 import { defineComponent,ref,computed } from 'vue'
 import draggable from 'vuedraggable'
 import {useStore} from 'vuex'
+import {sotorekey} from "../../store"
 import Item from './Item.vue'
 export default defineComponent({
         name: "Layer",
@@ -29,10 +26,11 @@ export default defineComponent({
             Item
         },
         setup(props,ctx){
-            const store = useStore();
+            const store = useStore(sotorekey);
+
             const list = computed({
                 get(){
-                    return store.state.components;
+                    return store.state.dataElements;
                 },
                 set(value){
                     return store.commit("sortList",value)

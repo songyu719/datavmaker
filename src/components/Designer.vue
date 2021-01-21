@@ -1,8 +1,20 @@
 <template>
-    <div class="designer" ref="wrap">
-        <Vue3DraggableResizable class="canvasWrap"  :style="{transform:'scale('+scale+')'}" trigger-key="right" :resizable="false" >
+    <div class="designer" id="designer" ref="wrap">
+        <Vue3DraggableResizable class="canvasWrap"   :style="{transform:'scale('+scale+')'}" trigger-key="right" :resizable="false" >
             <DraggableContainer class="canvas">
-                <Vue3DraggableResizable :parent-scale-x="scale" :active="true"   @drag-end="dragend($event,item.id)" :parent-scale-y="scale" class="card" :style="{background:item.color,zIndex:components.length-index}" :x="item.x" :y="item.y" :init-h="100" :init-w="100" v-for="(item,index) in components">
+                <Vue3DraggableResizable
+                        :parent-scale-x="scale" :active="true"
+                         @drag-end="dragend($event,item.id)"
+                        @resize-end="resized($event,item.id)"
+                        :parent-scale-y="scale"
+                         class="card"
+                        :style="{background:item.color,zIndex:dataElements.length-index}"
+                        :x="item.x"
+                        :y="item.y"
+                        :init-h="100"
+                        :init-w="100"
+                        v-for="(item,index) in dataElements"
+                >
                     {{ item.name }}
                 </Vue3DraggableResizable>
             </DraggableContainer>
@@ -15,36 +27,26 @@
     import {useStore} from 'vuex'
     import {divide,round} from "@/utils/math"
     import scalelv from "@/utils/scaleLv";
+    import useScale from "@/hooks/useScale";
+    import {sotorekey} from "@/store";
+
     export default defineComponent({
         name: "Designer",
         setup(){
-            const store = useStore();
+            const  store = useStore(sotorekey);
             const  scale = computed(()=>{
                 return store.state.scale;
             })
-            const components = computed(()=>{
-                return store.state.components
+            const dataElements = computed(()=>{
+                return store.state.dataElements
             })
-            const curScale = ref(0);
+            const curScale = useScale()
             const  wrap = ref<HTMLElement>()
-            function onMouseWheel(e:WheelEvent){
-                if(e.deltaY<0){
-                    if(curScale.value<scalelv.length-1){
-                        curScale.value += 1
-                    }
-                }else{
-                    if(curScale.value>0){
-                        curScale.value -= 1
-                    }
-                }
-            }
             watchEffect(()=>{
                 store.commit("changeScale", scalelv[curScale.value])
             })
 
             onMounted(()=>{
-                //@ts-ignore
-                window.addEventListener("mousewheel",onMouseWheel,false);
                 //计算默认缩放
                 nextTick(()=>{
                     for(let i =0 ;i<scalelv.length;i++){
@@ -59,8 +61,11 @@
             function dragend(e: { x:number,y:number },id:string){
                 store.commit("updatePos",{pos:e,id})
             }
+            function resized(pos:{x:number,y:number,w:number,h:number},id:string) {
 
-            return {scale,wrap,components,dragend}
+            }
+
+            return {scale,wrap,dataElements,dragend,resized}
         }
     })
 </script>

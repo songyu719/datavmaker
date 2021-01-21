@@ -2,7 +2,7 @@
   <div class="home">
 
       <el-container>
-          <el-header>Header</el-header>
+          <el-header><ToolsBar /></el-header>
           <el-container>
               <el-aside width="200px">
                   <Layer></Layer>
@@ -14,7 +14,7 @@
                   <el-footer>
                   <span>画布大小:1920 * 1080</span>
                   <span>缩放:{{scale}}%</span>
-                  <span>元素数量:8</span>
+                  <span>元素数量:{{dataElementCount}}</span>
                   </el-footer>
               </el-container>
               <el-aside width="200px">Aside</el-aside>
@@ -26,31 +26,34 @@
 </template>
 
 <script lang="ts">
-    import {defineComponent, ref, onMounted, computed} from 'vue';
+import {defineComponent, ref, onMounted, computed} from 'vue';
 import Designer from "../components/Designer.vue";
 import Layer from "../components/Layer/Layer.vue"
-    import {useStore} from "vuex";
-    import {times} from "@/utils/math";
+import ToolsBar from "@/components/ToolsBar.vue"
+import {useStore} from "vuex";
+import {times} from "@/utils/math";
+import {sotorekey} from "@/store";
+
 export default defineComponent({
   name: 'Home',
   components: {
       Designer,
-      Layer
+      Layer,
+      ToolsBar
 
   },
    setup(props,ctx){
 
-       const store = useStore();
+       const store = useStore(sotorekey);
        const scale = computed(()=>times(store.state.scale,100))
-
-
+       const dataElementCount = computed(()=>store.state.dataElements.length)
         onMounted(()=>{
            document.oncontextmenu = ()=>{
                return false;
            }
         });
 
-        return {scale}
+        return {scale,dataElementCount}
    }
 
 });
