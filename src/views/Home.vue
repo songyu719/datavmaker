@@ -17,7 +17,7 @@
                   <span>元素数量:{{dataElementCount}}</span>
                   </el-footer>
               </el-container>
-              <el-aside width="200px">Aside</el-aside>
+              <el-aside width="200px"><BasicMonitor /></el-aside>
           </el-container>
       </el-container>
 
@@ -33,13 +33,15 @@ import ToolsBar from "@/components/ToolsBar.vue"
 import {useStore} from "vuex";
 import {times} from "@/utils/math";
 import {sotorekey} from "@/store";
+import BasicMonitor from "@/components/PropsMonitor/BasicMonitor.vue"
 
 export default defineComponent({
   name: 'Home',
   components: {
       Designer,
       Layer,
-      ToolsBar
+      ToolsBar,
+      BasicMonitor
 
   },
    setup(props,ctx){

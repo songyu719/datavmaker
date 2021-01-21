@@ -3,9 +3,10 @@
         <Vue3DraggableResizable class="canvasWrap"   :style="{transform:'scale('+scale+')'}" trigger-key="right" :resizable="false" >
             <DraggableContainer class="canvas">
                 <Vue3DraggableResizable
-                        :parent-scale-x="scale" :active="true"
+                        :parent-scale-x="scale"
+                        :active="item.active"
                          @drag-end="dragend($event,item.id)"
-                        @resize-end="resized($event,item.id)"
+                         @resize-end="resized($event,item.id)"
                         :parent-scale-y="scale"
                          class="card"
                         :style="{background:item.color,zIndex:dataElements.length-index}"
@@ -14,8 +15,15 @@
                         :init-h="100"
                         :init-w="100"
                         v-for="(item,index) in dataElements"
+                        :key="item.id"
+                        @click="active(item.id)"
                 >
-                    {{ item.name }}
+                    <div style="width: 100%;height:100%">
+                        {{ item.name }}
+                        <el-button>我是一个按钮</el-button>
+                    </div>
+
+
                 </Vue3DraggableResizable>
             </DraggableContainer>
         </Vue3DraggableResizable>
@@ -29,7 +37,6 @@
     import scalelv from "@/utils/scaleLv";
     import useScale from "@/hooks/useScale";
     import {sotorekey} from "@/store";
-
     export default defineComponent({
         name: "Designer",
         setup(){
@@ -62,10 +69,12 @@
                 store.commit("updatePos",{pos:e,id})
             }
             function resized(pos:{x:number,y:number,w:number,h:number},id:string) {
-
+                    store.commit("updateSize",{pos,id})
             }
-
-            return {scale,wrap,dataElements,dragend,resized}
+            function active(id:string) {
+                store.commit("toggleActive",{id:id,isActive:true})
+            }
+            return {scale,wrap,dataElements,dragend,resized,active}
         }
     })
 </script>

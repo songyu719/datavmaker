@@ -13,7 +13,9 @@ interface dataElement {
     y:number,
     width:number,
     height:number,
-    customData?:any
+    active:boolean,
+    customData?:any,
+
 
 }
 
@@ -30,44 +32,18 @@ export default createStore<State>({
         x:100,
         y:100,
         height:100,
-        width:100
-        
+        width:100,
+        active:false
       },
       {
         name:"图层2",
-        color:"pink",
+        color:"red",
         id:'u2',
-        x:100,
-        y:200,
-        height:100,
-        width:100
-      },
-      {
-        name:"图层3",
-        color:"skyblue",
-        id:'u3',
-        x:100,
-        y:300,
-        height:100,
-        width:100
-      },
-      {
-        name:"图层4",
-        color:"green",
-        id:'u4',
-        x:200,
-        y:100,
-        width:100,
-        height:100,
-      },
-      {
-        name:"图层5",
-        color:"orange",
-        id:'u5',
         x:200,
         y:200,
+        height:100,
         width:100,
-        height:100
+        active:true
       },
     ],
 
@@ -92,19 +68,40 @@ export default createStore<State>({
     updateSize(state,payload:{pos:{x:number,y:number,w:number,h:number},id:string }){
       for(let o of state.dataElements){
         if(o.id === payload.id){
-          o.x=payload.pos.x
-          o.y=payload.pos.y
           o.width=payload.pos.w
           o.height = payload.pos.h
+          o.x=payload.pos.x
+          o.y=payload.pos.y
+
         }
       }
     },
+    updateName(state,payload:{name:string}){
+          state.dataElements.find((item)=>item.active)!.name = payload.name
+          console.log(state.dataElements[1].name)
+    },
     AddElements(state,payload){
       state.dataElements.unshift(payload)
+    },
+    toggleActive(state,payload:{id:string,isActive:boolean}){
+      state.dataElements.forEach(item=>{
+          if(item.id == payload.id){
+              console.log("这样不对么？")
+              item.active = true
+          }else{
+              item.active = false
+          }
+      })
     }
+
   },
   actions: {
 
+  },
+  getters:{
+    currentElement(state){
+       return state.dataElements.find((item)=>item.active)
+    }
   },
   modules: {
   }
