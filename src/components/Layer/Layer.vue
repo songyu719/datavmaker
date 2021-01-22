@@ -6,7 +6,7 @@
         <el-divider style="margin: 0px"></el-divider>
         <draggable tag="ul" v-model="list" class="layer_list">
             <template #item="{element}" >
-                <Item :name="element.name" />
+                <Item :name="element.name" :id="element.id" :active="element.active" />
             </template>
         </draggable>
     </div>
@@ -61,8 +61,7 @@ export default defineComponent({
         color: #909399;
         font-weight: 400;
         font-size: 14px;
-        background: linear-gradient(145deg, #ffffff, #e6e6e6);
-        box-shadow:  13px 13px 23px #e3e3e3,-13px -13px 23px #ffffff;
+
     }
     .layer_list{
         width: 100%;

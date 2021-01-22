@@ -1,5 +1,12 @@
 <template>
-    <li><span>{{ props.name}} </span>  <i @click="toggle" :class="lock?'el-icon-lock':'el-icon-unlock'"></i></li>
+    <li :class="{active:props.active}">
+
+        <div class="inputbox"><input type="text" :value="props.name" /> </div>
+            <div class="btns">
+                <i @click="toggle" :class="lock?'el-icon-lock':'el-icon-unlock'"></i>
+            </div>
+
+    </li>
 
 </template>
 
@@ -11,6 +18,12 @@
         props:{
             name:{
                 type:String
+            },
+            id:{
+                type:String
+            },
+            active:{
+                type:Boolean
             }
         },
         setup(props, ctx) {
@@ -28,29 +41,52 @@
 
 <style lang="less" scoped>
     li {
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         height: 40px;
         display: flex;
         align-items: center;
-        border-radius: 5px;
+        border-radius: 2px;
         background: #ffffff;
-        box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+        box-shadow: 2px 2px 2px #d9d9d9, -5px -5px 10px #ffffff;
         font-size: 12px;
         padding: 5px 10px;
         flex-direction: row;
         color: #909399;
         justify-content: space-between;
         user-select: none;
-
-        i {
-            font-size: 16px;
-            cursor: pointer;
+        width: 180px;
+        .btns{
+            margin-left: 10px;
         }
+        .inputbox{
+            flex:1;
+            input{
+                width: 100%;
+                outline: none;
+                border: none;
+                background: transparent;
+                padding: 5px;
+                &:focus{
+                    border: solid 1px #c0c0c0;
+                }
+            }
+        }
+
     }
 
-    li:hover {
-        background: #ffffff;
-        box-shadow: 6px 6px 12px #b0b0b0,-6px -6px 12px #ffffff;
+    .active {
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.9);
+        background: rgba(64, 158, 255,0.8);
+        color: #ffffff;
+        input{
+            color: #ffffff;
+            &:focus{
+
+                border: solid 1px #fff!important;
+            }
+        }
+
+
 
     }
 

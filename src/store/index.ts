@@ -45,6 +45,16 @@ export default createStore<State>({
         width:100,
         active:true
       },
+        {
+            name:"图层3",
+            color:"red",
+            id:'u3',
+            x:300,
+            y:300,
+            height:100,
+            width:100,
+            active:true
+        },
     ],
 
 
