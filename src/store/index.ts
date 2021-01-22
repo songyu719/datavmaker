@@ -17,9 +17,6 @@ interface dataElement {
     lock:boolean,
     visible:boolean,
     customData?:any,
-
-
-
 }
 
 export  const storeKey:InjectionKey<Store<State>> = Symbol();
@@ -65,8 +62,6 @@ export default createStore<State>({
             lock:false
         },
     ],
-
-
   },
   mutations: {
     changeScale(state,payload){
@@ -83,6 +78,7 @@ export default createStore<State>({
               o.y=payload.pos.y
             }
         }
+
     },
     updateSize(state,payload:{pos:{x:number,y:number,w:number,h:number},id:string }){
       for(let o of state.dataElements){

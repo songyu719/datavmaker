@@ -25,8 +25,6 @@
                         {{ item.name }}
                         <el-button>我是一个按钮</el-button>
                     </div>
-
-
                 </Vue3DraggableResizable>
             </DraggableContainer>
         </Vue3DraggableResizable>
@@ -34,7 +32,7 @@
 </template>
 
 <script lang="ts">
-    import {onMounted, ref,defineComponent,nextTick,computed,watchEffect} from "vue";
+    import {onMounted, ref,defineComponent,nextTick,computed,watchEffect,reactive} from "vue";
     import {useStore} from 'vuex'
     import {divide,round} from "@/utils/math"
     import scalelv from "@/utils/scaleLv";
@@ -42,7 +40,10 @@
     import {storeKey} from "@/store";
     export default defineComponent({
         name: "Designer",
-        setup(){
+        props:{
+            name
+        },
+        setup(props,ctx){
             const  store = useStore(storeKey);
             const  scale = computed(()=>{
                 return store.state.scale;
@@ -55,7 +56,6 @@
             watchEffect(()=>{
                 store.commit("changeScale", scalelv[curScale.value])
             })
-
             onMounted(()=>{
                 //计算默认缩放
                 nextTick(()=>{
