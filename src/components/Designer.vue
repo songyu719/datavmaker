@@ -99,8 +99,8 @@
         justify-content: center;
         overflow: hidden;
         position: relative;
-        background:url("https://img.alicdn.com/tfs/TB184VLcPfguuRjSspkXXXchpXa-14-14.png");
-
+        /*background:url("https://img.alicdn.com/tfs/TB184VLcPfguuRjSspkXXXchpXa-14-14.png");*/
+        background:@input-bg-color
     }
     .canvasWrap{
         position: absolute;

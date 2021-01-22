@@ -7,61 +7,62 @@
         <div class="propsbox">
             <el-row :gutter="10">
                 <el-col :span="24" >
-                    <div>
-                        <input placeholder="" size="small" v-model="name" class="myinput" />
-
-                    </div>
-
+                        <PropInput  placeholder="图层名" display="row" v-model="name"  />
                 </el-col>
             </el-row>
             <el-row :gutter="10">
                 <el-col :span="12" >
-                    <div>
-                        <el-input placeholder="" v-model="x" size="small">
-                            <template #prefix>
-                                <i class="prefix"> X </i>
-                            </template>
-                        </el-input>
-                    </div>
-
+                        <PropInput type="number" prop-name="X" display="row" v-model="x"  />
                 </el-col>
                 <el-col :span="12">
-                    <div>
-                        <el-input placeholder="" v-model="y" size="small">
-                            <template #prefix>
-                                <i class="prefix"> Y </i>
-                            </template>
-                        </el-input>
-                    </div>
+                    <PropInput type="number" prop-name="Y" display="row" v-model="y"  />
                 </el-col>
             </el-row>
             <el-row :gutter="10">
                 <el-col :span="12">
-                    <el-input placeholder="" v-model="w" size="small">
-                        <template #prefix>
-                            <i class="prefix">W</i>
-                        </template>
-                    </el-input>
+                    <PropInput type="number"  prop-name="W" display="row" v-model="w"  />
                 </el-col>
                 <el-col :span="12">
-                    <el-input placeholder="" v-model="h" size="small">
-                        <template #prefix>
-                            <i class="prefix">H</i>
-                        </template>
-                    </el-input>
+                    <PropInput type="number" prop-name="H" display="row" v-model="h"  />
                 </el-col>
             </el-row>
+
+            <el-row :gutter="10">
+                <el-col :span="24">
+                    <PropInput   prop-name="边框颜色" display="row" v-model="w"  />
+                </el-col>
+                <el-col :span="24">
+                    <PropInput   prop-name="边框样式" display="row" v-model="h"  />
+                </el-col>
+                <el-col :span="12">
+                    <PropInput type="number" prop-name="左上" display="row" v-model="h"  />
+                </el-col>
+                <el-col :span="12">
+                    <PropInput type="number" prop-name="右上" display="row" v-model="h"  />
+                </el-col>
+                <el-col :span="12">
+                    <PropInput type="number" prop-name="左下" display="row" v-model="h"  />
+                </el-col>
+                <el-col :span="12">
+                    <PropInput type="number" prop-name="右下" display="row" v-model="h"  />
+                </el-col>
+            </el-row>
+
         </div>
 
     </div>
 </template>
 
-<script>
-    import { computed } from 'vue'
+<script lang="ts">
+    import { computed,watchEffect} from 'vue'
     import {storeKey} from "@/store"
     import { useStore } from 'vuex'
+    import PropInput from "./PropInput.vue";
     export default {
         name: "BasicMonitor",
+        components:{
+            PropInput
+        },
         setup(){
           const store = useStore(storeKey);
           const name = computed({
@@ -69,10 +70,10 @@
                 return  store.getters.currentElement.name
               },
               set(value){
-                    console.log(value)
                   store.commit("updateName",{name:value})
               }
           })
+
 
           const x =computed({
               get(){
@@ -108,8 +109,11 @@
                     console.log(value)
                 }
             })
+            function input(e:any) {
+                console.log("父组件",e.value)
+            }
 
-            return {name,x,y,w,h}
+            return {name,x,y,w,h,input}
         }
 
     }
@@ -137,25 +141,9 @@
     .propsbox{
         padding: 10px;
     }
-    .el-row {
+    .el-col {
         margin-bottom: 10px;
-    &:last-child {
-         margin-bottom: 0;
-     }
     }
-    .prefix{
-        display: block;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        padding: 5px;
-    }
-    .myinput{
-        background: #262C33!important;
-        outline: none;
-        border: solid 1px #0B0C0D;
-        color: #fff;
-        padding: 5px;
-    }
+
 
 </style>

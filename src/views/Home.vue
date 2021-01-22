@@ -62,9 +62,6 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-    @fontColor :#bcc9d4;
-    @panelColor:#1d2127;
-    @input-bg-color:#262C33;
     .el-container {
         height: 100%;
     }
@@ -76,11 +73,11 @@ export default defineComponent({
     }
     .el-header{
         height: 40px!important;
-        background: #1d1e1f;
+        background: @main-color;
     }
     .el-footer{
-        background-color: #1d1e1f;
-        border-top:  1px solid #000;
+        background-color: @main-color;
+        border-top:  1px solid @main-border-color;
         height: 30px!important;
         display: flex;
         align-items: center;
@@ -90,8 +87,8 @@ export default defineComponent({
     }
 
     .el-aside {
-        border-right: 1px solid #000;
-        border-left: 1px solid #000;
+        border-right: 1px solid @main-border-color;
+        border-left: 1px solid @main-border-color;
         background-color: @panelColor;
     }
 
