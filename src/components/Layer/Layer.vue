@@ -17,7 +17,7 @@
 import { defineComponent,ref,computed } from 'vue'
 import draggable from 'vuedraggable'
 import {useStore} from 'vuex'
-import {sotorekey} from "../../store"
+import {storeKey} from "../../store"
 import Item from './Item.vue'
 export default defineComponent({
         name: "Layer",
@@ -26,7 +26,7 @@ export default defineComponent({
             Item
         },
         setup(props,ctx){
-            const store = useStore(sotorekey);
+            const store = useStore(storeKey);
 
             const list = computed({
                 get(){
@@ -44,8 +44,6 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-
-
     .box-card {
         width: 100%;
         height: 500px;
@@ -58,7 +56,7 @@ export default defineComponent({
         padding-left: 10px;
         color: #000;
         font-family:"微软雅黑";
-        color: #909399;
+        color: #ffffff;
         font-weight: 400;
         font-size: 14px;
 

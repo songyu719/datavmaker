@@ -32,7 +32,7 @@ import Layer from "../components/Layer/Layer.vue"
 import ToolsBar from "@/components/ToolsBar.vue"
 import {useStore} from "vuex";
 import {times} from "@/utils/math";
-import {sotorekey} from "@/store";
+import {storeKey} from "@/store";
 import BasicMonitor from "@/components/PropsMonitor/BasicMonitor.vue"
 
 export default defineComponent({
@@ -46,7 +46,7 @@ export default defineComponent({
   },
    setup(props,ctx){
 
-       const store = useStore(sotorekey);
+       const store = useStore(storeKey);
        const scale = computed(()=>times(store.state.scale,100))
        const dataElementCount = computed(()=>store.state.dataElements.length)
         onMounted(()=>{
@@ -61,7 +61,10 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="less">
+    @fontColor :#bcc9d4;
+    @panelColor:#1d2127;
+    @input-bg-color:#262C33;
     .el-container {
         height: 100%;
     }
@@ -73,22 +76,23 @@ export default defineComponent({
     }
     .el-header{
         height: 40px!important;
-        background: #2c2c2c;
+        background: #1d1e1f;
     }
     .el-footer{
-        background-color: #fff;
-        border-top:  1px solid #e6e6e6;
+        background-color: #1d1e1f;
+        border-top:  1px solid #000;
         height: 30px!important;
         display: flex;
         align-items: center;
-        color:#909399;
+        color:#c0c0c0;
         font-size: 12px;
         justify-content: space-between;
     }
 
     .el-aside {
-        border-right: 1px solid #e0e0e0;
-        border-left: 1px solid #e0e0e0;
+        border-right: 1px solid #000;
+        border-left: 1px solid #000;
+        background-color: @panelColor;
     }
 
 

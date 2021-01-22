@@ -8,8 +8,8 @@
             <el-row :gutter="10">
                 <el-col :span="24" >
                     <div>
-                        <el-input placeholder="" size="small" v-model="name">
-                        </el-input>
+                        <input placeholder="" size="small" v-model="name" class="myinput" />
+
                     </div>
 
                 </el-col>
@@ -58,12 +58,12 @@
 
 <script>
     import { computed } from 'vue'
-    import {sotorekey} from "@/store"
+    import {storeKey} from "@/store"
     import { useStore } from 'vuex'
     export default {
         name: "BasicMonitor",
         setup(){
-          const store = useStore(sotorekey);
+          const store = useStore(storeKey);
           const name = computed({
               get(){
                 return  store.getters.currentElement.name
@@ -130,11 +130,9 @@
         padding-left: 10px;
         color: #000;
         font-family:"微软雅黑";
-        color: #909399;
+        color: #fff;
         font-weight: 400;
         font-size: 14px;
-        background: linear-gradient(145deg, #ffffff, #e6e6e6);
-        box-shadow:  13px 13px 23px #e3e3e3,-13px -13px 23px #ffffff;
     }
     .propsbox{
         padding: 10px;
@@ -152,4 +150,12 @@
         align-items: center;
         padding: 5px;
     }
+    .myinput{
+        background: #262C33!important;
+        outline: none;
+        border: solid 1px #0B0C0D;
+        color: #fff;
+        padding: 5px;
+    }
+
 </style>
