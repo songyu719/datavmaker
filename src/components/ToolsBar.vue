@@ -5,12 +5,12 @@
 </template>
 
 <script>
-    import {sotorekey} from "@/store"
+    import {storeKey} from "@/store"
     import {useStore} from 'vuex'
     export default {
         name: "ToolsBar",
         setup(){
-            const store = useStore(sotorekey);
+            const store = useStore(storeKey);
               function getRandomColor(){
 
                  return '#'+Math.floor(Math.random()*16777215).toString(16);
@@ -24,10 +24,10 @@
                     x:200,
                     y:200,
                     width:100,
-                    height:100
+                    height:100,
+                    visible:true
                 })
             }
-
             return { AddElement}
         }
     }
@@ -40,5 +40,6 @@
         display: flex;
         flex-direction: row;
         padding: 5px 10px;
+        border-bottom: solid 1px #000;
     }
 </style>

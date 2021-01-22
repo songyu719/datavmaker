@@ -14,12 +14,12 @@ interface dataElement {
     width:number,
     height:number,
     active:boolean,
+    lock:boolean,
+    visible:boolean,
     customData?:any,
-
-
 }
 
-export  const sotorekey:InjectionKey<Store<State>> = Symbol();
+export  const storeKey:InjectionKey<Store<State>> = Symbol();
 
 export default createStore<State>({
   state: {
@@ -31,23 +31,37 @@ export default createStore<State>({
         id:'u1',
         x:100,
         y:100,
-        height:100,
-        width:100,
-        active:false
+        height:200,
+        width:200,
+        active:true,
+        visible:true,
+        lock:false
       },
       {
         name:"图层2",
-        color:"red",
+        color:"green",
         id:'u2',
-        x:200,
-        y:200,
-        height:100,
-        width:100,
-        active:true
+        x:300,
+        y:300,
+        height:200,
+        width:200,
+        active:false,
+        visible:true,
+        lock:false
       },
+        {
+            name:"图层3",
+            color:"pink",
+            id:'u3',
+            x:500,
+            y:500,
+            height:200,
+            width:200,
+            active:false,
+            visible:true,
+            lock:false
+        },
     ],
-
-
   },
   mutations: {
     changeScale(state,payload){
@@ -64,6 +78,7 @@ export default createStore<State>({
               o.y=payload.pos.y
             }
         }
+
     },
     updateSize(state,payload:{pos:{x:number,y:number,w:number,h:number},id:string }){
       for(let o of state.dataElements){
@@ -86,13 +101,24 @@ export default createStore<State>({
     toggleActive(state,payload:{id:string,isActive:boolean}){
       state.dataElements.forEach(item=>{
           if(item.id == payload.id){
-              console.log("这样不对么？")
               item.active = true
           }else{
               item.active = false
           }
       })
-    }
+    },
+    toggleLock(state,payload:{id:string}){
+       const target = state.dataElements.find(item=>item.id == payload.id);
+       if(target){
+           target.lock = !target.lock;
+       }
+    },
+      toggleVisible(state,payload:{id:string}){
+          const target = state.dataElements.find(item=>item.id == payload.id);
+          if(target){
+              target.visible = !target.visible;
+          }
+      }
 
   },
   actions: {
