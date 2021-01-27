@@ -30,19 +30,19 @@
                     component:"ImageBox"
                 })
             }
-          function AddText() {
-            store.commit("AddElements",{
-              name:`图层${store.state.dataElements.length+1}`,
-              color:getRandomColor(),
-              id:`u${store.state.dataElements.length+1}`,
-              x:200,
-              y:200,
-              width:100,
-              height:100,
-              visible:true,
-              components:"Text"
-            })
-          }
+            function AddText() {
+              store.commit("AddElements",{
+                name:`图层${store.state.dataElements.length+1}`,
+                color:getRandomColor(),
+                id:`u${store.state.dataElements.length+1}`,
+                x:200,
+                y:200,
+                width:100,
+                height:100,
+                visible:true,
+                component:"Text"
+              })
+            }
             return { AddElement, AddText }
         }
     }
