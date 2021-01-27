@@ -17,7 +17,10 @@
                   <span>元素数量:{{dataElementCount}}</span>
                   </el-footer>
               </el-container>
-              <el-aside width="200px"><BasicMonitor /></el-aside>
+              <el-aside width="250px">
+                  <BasicMonitor />
+                  <ImageMonitor />
+              </el-aside>
           </el-container>
       </el-container>
 
@@ -34,14 +37,15 @@ import {useStore} from "vuex";
 import {times} from "@/utils/math";
 import {storeKey} from "@/store";
 import BasicMonitor from "@/components/PropsMonitor/BasicMonitor.vue"
-
+import ImageMonitor from "@/components/PropsMonitor/ImageMonitor.vue"
 export default defineComponent({
   name: 'Home',
   components: {
       Designer,
       Layer,
       ToolsBar,
-      BasicMonitor
+      BasicMonitor,
+      ImageMonitor
 
   },
    setup(props,ctx){

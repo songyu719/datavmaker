@@ -26,7 +26,7 @@
                     width:100,
                     height:100,
                     visible:true,
-                    components:"ImageBox"
+                    component:"ImageBox"
                 })
             }
             return { AddElement}
