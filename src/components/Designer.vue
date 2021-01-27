@@ -12,7 +12,7 @@
                          @resize-end="resized($event,item.id)"
                         :parent-scale-y="scale"
                          class="card"
-                        :style="{background:item.color,zIndex:dataElements.length-index}"
+                        :style="{zIndex:dataElements.length-index}"
                         :x="item.x"
                         :y="item.y"
                         :init-h="item.height"
@@ -21,7 +21,10 @@
                         :key="item.id"
                         @click="active(item)"
                 >
-                    <component :is="item.component"></component>
+                    <div style="width: 100%;height: 100%;overflow: hidden">
+                        <component :is="item.component" :id="item.id"></component>
+                    </div>
+
                 </Vue3DraggableResizable>
             </DraggableContainer>
         </Vue3DraggableResizable>
@@ -107,9 +110,7 @@
         box-shadow:  #000 0 0 80px 0;
 
     }
-    .canvas{
 
-    }
     .card{
         color: #fff;
         display: flex;

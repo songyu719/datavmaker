@@ -77,6 +77,7 @@ export default createStore<State>({
           console.log(state.dataElements[1].name)
     },
     AddElements(state,payload){
+        console.log(payload)
       state.dataElements.unshift(payload)
     },
     toggleActive(state,payload:{id:string,isActive:boolean}){
@@ -99,6 +100,13 @@ export default createStore<State>({
           if(target){
               target.visible = !target.visible;
           }
+      },
+
+      initState(state,payload:{id:string,data:any}){
+            const  target = state.dataElements.find(item=>item.id == payload.id);
+            if(target){
+                target.customData = payload.data
+            }
       }
 
   },
