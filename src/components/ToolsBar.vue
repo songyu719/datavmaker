@@ -1,6 +1,7 @@
 <template>
     <div class="toolsbar">
         <el-button type="primary" icon="el-icon-plus" size="mini" @click="AddElement" ></el-button>
+        <el-button type="primary" icon="el-icon-plus" size="mini" @click="AddText" ></el-button>
     </div>
 </template>
 
@@ -29,7 +30,20 @@
                     components:"ImageBox"
                 })
             }
-            return { AddElement}
+          function AddText() {
+            store.commit("AddElements",{
+              name:`图层${store.state.dataElements.length+1}`,
+              color:getRandomColor(),
+              id:`u${store.state.dataElements.length+1}`,
+              x:200,
+              y:200,
+              width:100,
+              height:100,
+              visible:true,
+              components:"Text"
+            })
+          }
+            return { AddElement, AddText }
         }
     }
 </script>

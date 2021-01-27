@@ -10,10 +10,12 @@ import "reset-css"
 import "./global.css"
 
 import ImageBox from "@/components/ImageBox.vue"
+import Text from "@/components/Text.vue";
 
 
 const app =  createApp(App)
     app.component("ImageBox",ImageBox)
+    app.component("Text", Text)
     app.use(store,storeKey)
     app.use(ElementPlus)
     app.use(Vue3DraggableResizable)
