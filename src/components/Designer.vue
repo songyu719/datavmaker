@@ -21,10 +21,7 @@
                         :key="item.id"
                         @click="active(item)"
                 >
-                    <div style="width: 100%;height:100%">
-                        {{ item.name }}
-                        <el-button>我是一个按钮</el-button>
-                    </div>
+                    <component :is="item.component"></component>
                 </Vue3DraggableResizable>
             </DraggableContainer>
         </Vue3DraggableResizable>
