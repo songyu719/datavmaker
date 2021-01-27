@@ -5,7 +5,7 @@ interface State {
   dataElements:dataElement[]
 }
 
-interface dataElement {
+export interface dataElement {
     name:string,
     id:string,
     color:string,
@@ -16,7 +16,8 @@ interface dataElement {
     active:boolean,
     lock:boolean,
     visible:boolean,
-    component:string
+    component:string,
+    monitor:string
     customData?:any,
 
 }
@@ -37,8 +38,11 @@ export default createStore<State>({
         width:200,
         active:true,
         visible:true,
-        component:"ImageBox",
-        lock:false
+        component:"ImageBox", monitor:"ImageMonitor",
+        lock:false,
+        customData:{
+            src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1160360589,2429665544&fm=26&gp=0.jpg"
+        }
       },
 
 

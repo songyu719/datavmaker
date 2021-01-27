@@ -8,6 +8,7 @@
 <script>
     import {storeKey} from "@/store"
     import {useStore} from 'vuex'
+    import IImageBox from "@/components/ImageBox/IImageBox";
     export default {
         name: "ToolsBar",
         setup(){
@@ -27,7 +28,11 @@
                     width:100,
                     height:100,
                     visible:true,
-                    component:"ImageBox"
+                    component:"ImageBox",
+                    monitor:"ImageMonitor",
+                    customData:{
+                        src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1160360589,2429665544&fm=26&gp=0.jpg"
+                    }
                 })
             }
           function AddText() {

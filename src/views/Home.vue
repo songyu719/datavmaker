@@ -19,7 +19,7 @@
               </el-container>
               <el-aside width="250px">
                   <BasicMonitor />
-                  <ImageMonitor />
+                    <component :is="currentElement.monitor"/>
               </el-aside>
           </el-container>
       </el-container>
@@ -37,15 +37,14 @@ import {useStore} from "vuex";
 import {times} from "@/utils/math";
 import {storeKey} from "@/store";
 import BasicMonitor from "@/components/PropsMonitor/BasicMonitor.vue"
-import ImageMonitor from "@/components/PropsMonitor/ImageMonitor.vue"
+import ImageMonitor from "@/components/ImageBox/ImageMonitor.vue"
 export default defineComponent({
   name: 'Home',
   components: {
       Designer,
       Layer,
       ToolsBar,
-      BasicMonitor,
-      ImageMonitor
+      BasicMonitor
 
   },
    setup(props,ctx){
@@ -53,13 +52,16 @@ export default defineComponent({
        const store = useStore(storeKey);
        const scale = computed(()=>times(store.state.scale,100))
        const dataElementCount = computed(()=>store.state.dataElements.length)
+       const currentElement = computed(()=>{
+           return store.getters.currentElement;
+       })
         onMounted(()=>{
            document.oncontextmenu = ()=>{
                return false;
            }
         });
 
-        return {scale,dataElementCount}
+        return {scale,dataElementCount,currentElement}
    }
 
 });

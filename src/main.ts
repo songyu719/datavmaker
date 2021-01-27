@@ -9,12 +9,14 @@ import 'element-plus/lib/theme-chalk/index.css';
 import "reset-css"
 import "./global.css"
 
-import ImageBox from "@/components/ImageBox.vue"
+import ImageBox from "@/components/ImageBox/ImageBox.vue"
+import ImageMonitor from "@/components/ImageBox/ImageMonitor.vue"
 import Text from "@/components/Text.vue";
 
 
 const app =  createApp(App)
     app.component("ImageBox",ImageBox)
+    app.component("ImageMonitor",ImageMonitor)
     app.component("Text", Text)
     app.use(store,storeKey)
     app.use(ElementPlus)

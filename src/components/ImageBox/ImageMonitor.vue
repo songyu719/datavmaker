@@ -7,7 +7,7 @@
         <div class="propsbox">
             <el-row :gutter="10" v-for="(v,k) in currentElement">
                 <el-col :span="24" >
-                    <PropInput  placeholder="路径" display="row"  v-model="src"  />
+                    <PropInput  placeholder="路径" display="row"  :prop-name="k"  v-model="src"  />
                 </el-col>
             </el-row>
         </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import PropInput from "./PropInput";
+    import PropInput from "../PropsMonitor/PropInput";
     import {storeKey} from "@/store";
     import {useStore} from "vuex";
     import {defineComponent,computed} from "vue"
