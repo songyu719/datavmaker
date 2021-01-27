@@ -9,6 +9,13 @@ import 'element-plus/lib/theme-chalk/index.css';
 import "reset-css"
 import "./global.css"
 
+import ImageBox from "@/components/ImageBox.vue"
 
 
-createApp(App).use(store,storeKey).use(ElementPlus).use(Vue3DraggableResizable).use(router).mount('#app')
+const app =  createApp(App)
+    app.component("ImageBox",ImageBox)
+    app.use(store,storeKey)
+    app.use(ElementPlus)
+    app.use(Vue3DraggableResizable)
+    app.use(router)
+    app.mount('#app')

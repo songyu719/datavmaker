@@ -16,7 +16,9 @@ interface dataElement {
     active:boolean,
     lock:boolean,
     visible:boolean,
+    component:string
     customData?:any,
+
 }
 
 export  const storeKey:InjectionKey<Store<State>> = Symbol();
@@ -35,32 +37,11 @@ export default createStore<State>({
         width:200,
         active:true,
         visible:true,
+        component:"ImageBox",
         lock:false
       },
-      {
-        name:"图层2",
-        color:"green",
-        id:'u2',
-        x:300,
-        y:300,
-        height:200,
-        width:200,
-        active:false,
-        visible:true,
-        lock:false
-      },
-        {
-            name:"图层3",
-            color:"pink",
-            id:'u3',
-            x:500,
-            y:500,
-            height:200,
-            width:200,
-            active:false,
-            visible:true,
-            lock:false
-        },
+
+
     ],
   },
   mutations: {
