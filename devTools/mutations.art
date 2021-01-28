@@ -1,0 +1,5 @@
+import {dataElement} from "@/store/index";
+
+export function changeScale(scale:number) {
+    store.commit("changeScale",scale)
+}

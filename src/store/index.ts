@@ -1,6 +1,8 @@
-import { createStore,Store } from 'vuex'
+import { createStore,Store,useStore as useCoreStore } from 'vuex'
 import {InjectionKey} from 'vue'
-interface State {
+import mutations from "./mutations"
+
+export interface State {
   scale:number,
   dataElements:dataElement[]
 }
@@ -48,72 +50,8 @@ export default createStore<State>({
 
     ],
   },
-  mutations: {
-    changeScale(state,payload){
-      state.scale = payload;
-    },
-    sortList(state,payload){
-      console.log(payload);
-      state.dataElements = payload
-    },
-    updatePos(state,payload:{pos:{x:number,y:number},id:string }){
-        for(let o of state.dataElements){
-            if(o.id === payload.id){
-              o.x=payload.pos.x
-              o.y=payload.pos.y
-            }
-        }
-
-    },
-    updateSize(state,payload:{pos:{x:number,y:number,w:number,h:number},id:string }){
-      for(let o of state.dataElements){
-        if(o.id === payload.id){
-          o.width=payload.pos.w
-          o.height = payload.pos.h
-          o.x=payload.pos.x
-          o.y=payload.pos.y
-
-        }
-      }
-    },
-    updateName(state,payload:{name:string}){
-          state.dataElements.find((item)=>item.active)!.name = payload.name
-          console.log(state.dataElements[1].name)
-    },
-    AddElements(state,payload){
-        console.log(payload)
-      state.dataElements.unshift(payload)
-    },
-    toggleActive(state,payload:{id:string,isActive:boolean}){
-      state.dataElements.forEach(item=>{
-          if(item.id == payload.id){
-              item.active = true
-          }else{
-              item.active = false
-          }
-      })
-    },
-    toggleLock(state,payload:{id:string}){
-       const target = state.dataElements.find(item=>item.id == payload.id);
-       if(target){
-           target.lock = !target.lock;
-       }
-    },
-      toggleVisible(state,payload:{id:string}){
-          const target = state.dataElements.find(item=>item.id == payload.id);
-          if(target){
-              target.visible = !target.visible;
-          }
-      },
-
-      initState(state,payload:{id:string,data:any}){
-            const  target = state.dataElements.find(item=>item.id == payload.id);
-            if(target){
-                target.customData = payload.data
-            }
-      }
-
-  },
+    mutations
+    ,
   actions: {
 
   },
@@ -125,3 +63,8 @@ export default createStore<State>({
   modules: {
   }
 })
+
+
+export  function useStore() {
+    return useCoreStore(storeKey)
+}

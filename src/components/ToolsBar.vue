@@ -2,6 +2,7 @@
     <div class="toolsbar">
         <el-button type="primary" icon="el-icon-plus" size="mini" @click="AddElement" ></el-button>
         <el-button type="primary" icon="el-icon-plus" size="mini" @click="AddText" ></el-button>
+        <el-button type="primary" icon="el-icon-plus" size="mini" @click="test" ></el-button>
     </div>
 </template>
 
@@ -9,6 +10,8 @@
     import {storeKey} from "@/store"
     import {useStore} from 'vuex'
     import IImageBox from "@/components/ImageBox/IImageBox";
+    import {test} from '@/store/mutations'
+
     export default {
         name: "ToolsBar",
         setup(){
@@ -48,7 +51,7 @@
                 component:"Text"
               })
             }
-            return { AddElement, AddText }
+            return { AddElement, AddText,test }
         }
     }
 </script>

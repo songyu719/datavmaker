@@ -33,18 +33,17 @@
 
 <script lang="ts">
     import {onMounted, ref,defineComponent,nextTick,computed,watchEffect,reactive} from "vue";
-    import {useStore} from 'vuex'
+    import {useStore} from '@/store'
     import {divide,round} from "@/utils/math"
     import scalelv from "@/utils/scaleLv";
     import useScale from "@/hooks/useScale";
-    import {storeKey} from "@/store";
     export default defineComponent({
         name: "Designer",
         props:{
             name
         },
         setup(props,ctx){
-            const  store = useStore(storeKey);
+            const  store = useStore();
             const  scale = computed(()=>{
                 return store.state.scale;
             })
