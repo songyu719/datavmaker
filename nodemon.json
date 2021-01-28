@@ -1,0 +1,24 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules"
+  ],
+  "verbose": true,
+  "execMap": {
+    "": "node",
+    "js": "node --harmony"
+  },
+  "events": {
+    "restart": "node ./devTools/helper.js"
+  },
+  "watch": [
+    "src/store/mutations.ts"
+  ],
+  "env": {
+    "NODE_ENV": "development",
+    "PORT": "3000"
+  },
+  "ext": "ts,json",
+  "legacy-watch": false
+}

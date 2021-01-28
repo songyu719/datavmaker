@@ -13,14 +13,17 @@ async function  read() {
     let mutations = []
 
     while ( r = re.exec(content)){
-
         mutations.push({
             name:r[1],
             interface:r[2],
         })
     }
-    console.log(mutations)
-
+    const code = template(__dirname+"/mutations.art",{
+        mutations
+    })
+    const writeFile = path.join(__dirname,"../src/store/commits.ts");
+    fs.writeFileSync(writeFile,code)
+    console.log("生成成功")
 }
 
 read();

@@ -51,7 +51,7 @@
                 component:"Text"
               })
             }
-            return { AddElement, AddText,test }
+            return { AddElement, AddText }
         }
     }
 </script>

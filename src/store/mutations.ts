@@ -1,8 +1,4 @@
 import {State,dataElement} from "@/store/index";
-import {useStore} from "@/store/index";
-
-const store = useStore()
-
 const mutations = {
         changeScale(state:State,payload:number){
             state.scale = payload;
@@ -17,7 +13,6 @@ const mutations = {
                     o.y=payload.pos.y
                 }
             }
-
         },
         updateSize(state:State,payload:{pos:{x:number,y:number,w:number,h:number},id:string }){
             for(let o of state.dataElements){
@@ -68,4 +63,5 @@ const mutations = {
 
 
 
-export  default  mutations
+export default mutations
+        

@@ -17,8 +17,9 @@
 import { defineComponent,ref,computed } from 'vue'
 import draggable from 'vuedraggable'
 import {useStore} from 'vuex'
-import {storeKey} from "../../store"
+import {dataElement, storeKey} from "../../store"
 import Item from './Item.vue'
+import {sortList} from "@/store/commits"
 export default defineComponent({
         name: "Layer",
         components:{
@@ -32,8 +33,8 @@ export default defineComponent({
                 get(){
                     return store.state.dataElements;
                 },
-                set(value){
-                    return store.commit("sortList",value)
+                set(value:dataElement[]){
+                    sortList(value )
                 }
             })
 
