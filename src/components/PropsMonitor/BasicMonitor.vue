@@ -55,8 +55,7 @@
 
 <script lang="ts">
     import { computed,watchEffect} from 'vue'
-    import {storeKey} from "@/store"
-    import { useStore } from 'vuex'
+    import {useStore} from "@/store"
     import PropInput from "./PropInput.vue";
     export default {
         name: "BasicMonitor",
@@ -64,7 +63,7 @@
             PropInput
         },
         setup(){
-          const store = useStore(storeKey);
+          const store = useStore();
           const name = computed({
               get(){
                 return  store.getters.currentElement.name

@@ -7,15 +7,13 @@
 </template>
 
 <script>
-    import {storeKey} from "@/store"
-    import {useStore} from 'vuex'
+    import {useStore} from "@/store"
     import IImageBox from "@/components/ImageBox/IImageBox";
-    import {test} from '@/store/mutations'
 
     export default {
         name: "ToolsBar",
         setup(){
-            const store = useStore(storeKey);
+            const store = useStore();
               function getRandomColor(){
 
                  return '#'+Math.floor(Math.random()*16777215).toString(16);

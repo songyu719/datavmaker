@@ -1,8 +1,20 @@
 import {dataElement} from "@/store/index";
 import {useStore} from "@/store/index";
-const store = useStore()
-{{each mutations}}
-export function  {{$value.name}}(payload:{{$value.interface}}) {
-    store.commit("{{$value.name}}",payload)
+
+export default  ()=>{
+    const store = useStore()
+    {{each mutations}}
+      /**
+        * {{$value.doc}}
+        */
+      function  {{$value.name}}(payload:{{$value.interface}}) {
+        store.commit("{{$value.name}}",payload)
+      }
+    {{/each}}
+
+    return {
+        {{each mutations}}
+             {{$value.name}},//{{$value.doc}}
+        {{/each}}
+    }
 }
-{{/each}}

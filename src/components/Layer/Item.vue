@@ -1,14 +1,11 @@
 <template>
     <li :class="{active:props.active}" @click="click">
-
         <div class="inputbox"><input type="text" v-model="name"  /> </div>
             <div class="btns">
                 <i @click="toggle('visible')" :class="{iconfont:true,'icon-close-eyes':!visible,'icon-open-eyes':visible }"></i>
                 <i @click="toggle('lock')" :class="lock?'el-icon-lock':'el-icon-unlock'"></i>
             </div>
-
     </li>
-
 </template>
 
 <script lang="ts">
@@ -46,6 +43,7 @@
             })
             const lock = computed(()=> {
                 return  store.state.dataElements.find(item=>item.id==props.id)!.lock
+
             })
             function toggle(type:string){
                switch (type) {

@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "nodemon": "nodemon nodemon.json"
+    "devtool": "nodemon nodemon.json"
   },
   "dependencies": {
     "core-js": "^3.6.5",

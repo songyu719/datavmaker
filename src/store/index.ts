@@ -64,6 +64,7 @@ export default createStore<State>({
   }
 })
 
+console.log("初始化Store")
 
 export  function useStore() {
     return useCoreStore(storeKey)

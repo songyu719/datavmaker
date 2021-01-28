@@ -6,7 +6,7 @@
         <el-divider style="margin: 0px"></el-divider>
         <draggable tag="ul" v-model="list" class="layer_list">
             <template #item="{element}" >
-                <Item :name="element.name" :id="element.id" :active="element.active" />
+                <Item :name="element.name" :id="element.id" :key="element.id" :active="element.active" />
             </template>
         </draggable>
     </div>
@@ -16,10 +16,10 @@
 
 import { defineComponent,ref,computed } from 'vue'
 import draggable from 'vuedraggable'
-import {useStore} from 'vuex'
-import {dataElement, storeKey} from "../../store"
+import {useStore} from '@/store'
+import {dataElement} from "../../store"
 import Item from './Item.vue'
-import {sortList} from "@/store/commits"
+import useCommits from "@/hooks/useCommits"
 export default defineComponent({
         name: "Layer",
         components:{
@@ -27,14 +27,15 @@ export default defineComponent({
             Item
         },
         setup(props,ctx){
-            const store = useStore(storeKey);
-
+            const store = useStore();
+            const {sortLayer,changeScale,updatePos} = useCommits()
             const list = computed({
                 get(){
                     return store.state.dataElements;
                 },
                 set(value:dataElement[]){
-                    sortList(value )
+                    sortLayer(value )
+
                 }
             })
 

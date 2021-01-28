@@ -16,8 +16,7 @@
 
 <script>
     import PropInput from "../PropsMonitor/PropInput";
-    import {storeKey} from "@/store";
-    import {useStore} from "vuex";
+    import {useStore} from "@/store";
     import {defineComponent,computed} from "vue"
     export default defineComponent({
         name: "ImageMonitor",
@@ -25,7 +24,7 @@
             PropInput
         },
         setup(props,ctx){
-           const store = useStore(storeKey)
+           const store = useStore()
            const currentElement =  computed(()=>{
                return store.getters.currentElement.customData
            })
