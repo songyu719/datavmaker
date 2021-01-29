@@ -29,7 +29,6 @@
            const currentElement =  computed(()=>{
                return store.getters.currentElement.customData
            })
-           const {updateSize} = useCommits()
             const src = computed({
                 get(){
                     return store.getters.currentElement.customData.src
