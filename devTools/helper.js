@@ -27,7 +27,6 @@ async function  read() {
                 }
             )
         }
-
     }
     const code = template(__dirname+"/mutations.art",{
         mutations

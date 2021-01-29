@@ -33,9 +33,8 @@ import {defineComponent, ref, onMounted, computed} from 'vue';
 import Designer from "../components/Designer.vue";
 import Layer from "../components/Layer/Layer.vue"
 import ToolsBar from "@/components/ToolsBar.vue"
-import {useStore} from "vuex";
 import {times} from "@/utils/math";
-import {storeKey} from "@/store";
+import {storeKey,useStore} from "@/store";
 import BasicMonitor from "@/components/PropsMonitor/BasicMonitor.vue"
 import ImageMonitor from "@/components/ImageBox/ImageMonitor.vue"
 export default defineComponent({
@@ -49,7 +48,7 @@ export default defineComponent({
   },
    setup(props,ctx){
 
-       const store = useStore(storeKey);
+       const store = useStore();
        const scale = computed(()=>times(store.state.scale,100))
        const dataElementCount = computed(()=>store.state.dataElements.length)
        const currentElement = computed(()=>{

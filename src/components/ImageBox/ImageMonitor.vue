@@ -18,6 +18,7 @@
     import PropInput from "../PropsMonitor/PropInput";
     import {useStore} from "@/store";
     import {defineComponent,computed} from "vue"
+    import useCommits from "@/hooks/useCommits";
     export default defineComponent({
         name: "ImageMonitor",
         components:{
@@ -28,12 +29,15 @@
            const currentElement =  computed(()=>{
                return store.getters.currentElement.customData
            })
+           const {updateSize} = useCommits()
             const src = computed({
                 get(){
                     return store.getters.currentElement.customData.src
                 },
                 set(v){
                     store.getters.currentElement.customData.src = v;
+
+
                 },
             })
 

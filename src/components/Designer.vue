@@ -37,6 +37,7 @@
     import {divide,round} from "@/utils/math"
     import scalelv from "@/utils/scaleLv";
     import useScale from "@/hooks/useScale";
+    import useCommits from "@/hooks/useCommits";
     export default defineComponent({
         name: "Designer",
         props:{
@@ -44,6 +45,7 @@
         },
         setup(props,ctx){
             const  store = useStore();
+            const {changeScale,updateRect,toggleActive} = useCommits();
             const  scale = computed(()=>{
                 return store.state.scale;
             })
@@ -53,7 +55,7 @@
             const curScale = useScale()
             const  wrap = ref<HTMLElement>()
             watchEffect(()=>{
-                store.commit("changeScale", scalelv[curScale.value])
+                changeScale(scalelv[curScale.value])
             })
             onMounted(()=>{
                 //计算默认缩放
@@ -64,18 +66,19 @@
                             return
                         }
                     }
-                    store.commit("changeScale", 1)
+                    changeScale(1)
                 })
             });
             function dragend(e: { x:number,y:number },id:string){
-                store.commit("updatePos",{pos:e,id})
+                updateRect({rect:e,id})
+
             }
-            function resized(pos:{x:number,y:number,w:number,h:number},id:string) {
-                    store.commit("updateSize",{pos,id})
+            function resized(rect:{x:number,y:number,w:number,h:number},id:string) {
+                    updateRect({rect,id})
             }
             function active(item:any) {
                 if(!item.lock){
-                    store.commit("toggleActive",{id:item.id,isActive:true})
+                    toggleActive({id:item.id,isActive:true})
                 }
 
             }
@@ -101,6 +104,9 @@
         /*background:url("https://img.alicdn.com/tfs/TB184VLcPfguuRjSspkXXXchpXa-14-14.png");*/
         background:@input-bg-color
     }
+
+
+
     .canvasWrap{
         position: absolute;
         width: 1920px;

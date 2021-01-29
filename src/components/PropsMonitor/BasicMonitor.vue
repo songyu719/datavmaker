@@ -57,6 +57,7 @@
     import { computed,watchEffect} from 'vue'
     import {useStore} from "@/store"
     import PropInput from "./PropInput.vue";
+    import useCommits from "@/hooks/useCommits";
     export default {
         name: "BasicMonitor",
         components:{
@@ -64,12 +65,13 @@
         },
         setup(){
           const store = useStore();
+          const {updateName} = useCommits();
           const name = computed({
               get(){
                 return  store.getters.currentElement.name
               },
-              set(value){
-                  store.commit("updateName",{name:value})
+              set(value:string){
+                  updateName({name:value})
               }
           })
 
@@ -108,11 +110,9 @@
                     console.log(value)
                 }
             })
-            function input(e:any) {
-                console.log("父组件",e.value)
-            }
 
-            return {name,x,y,w,h,input}
+
+            return {name,x,y,w,h}
         }
 
     }

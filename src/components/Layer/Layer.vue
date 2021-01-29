@@ -28,7 +28,7 @@ export default defineComponent({
         },
         setup(props,ctx){
             const store = useStore();
-            const {sortLayer,changeScale,updatePos} = useCommits()
+            const {sortLayer} = useCommits()
             const list = computed({
                 get(){
                     return store.state.dataElements;

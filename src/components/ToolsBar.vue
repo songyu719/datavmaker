@@ -8,46 +8,50 @@
 
 <script>
     import {useStore} from "@/store"
-    import IImageBox from "@/components/ImageBox/IImageBox";
-
+    import useCommits from "@/hooks/useCommits";
     export default {
         name: "ToolsBar",
         setup(){
             const store = useStore();
+            const { AddElements } = useCommits()
               function getRandomColor(){
 
                  return '#'+Math.floor(Math.random()*16777215).toString(16);
 
             }
             function AddElement() {
-                store.commit("AddElements",{
-                    name:`图层${store.state.dataElements.length+1}`,
-                    color:getRandomColor(),
-                    id:`u${store.state.dataElements.length+1}`,
-                    x:200,
-                    y:200,
-                    width:100,
-                    height:100,
-                    visible:true,
-                    component:"ImageBox",
-                    monitor:"ImageMonitor",
-                    customData:{
-                        src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1160360589,2429665544&fm=26&gp=0.jpg"
+                AddElements(
+                    {
+                        name:`图层${store.state.dataElements.length+1}`,
+                        color:getRandomColor(),
+                        id:`u${store.state.dataElements.length+1}`,
+                        x:200,
+                        y:200,
+                        width:100,
+                        height:100,
+                        visible:true,
+                        component:"ImageBox",
+                        monitor:"ImageMonitor",
+                        customData:{
+                            src:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1160360589,2429665544&fm=26&gp=0.jpg"
+                        }
                     }
-                })
+                )
             }
             function AddText() {
-              store.commit("AddElements",{
-                name:`图层${store.state.dataElements.length+1}`,
-                color:getRandomColor(),
-                id:`u${store.state.dataElements.length+1}`,
-                x:200,
-                y:200,
-                width:100,
-                height:100,
-                visible:true,
-                component:"Text"
-              })
+                AddElements(
+                    {
+                        name:`图层${store.state.dataElements.length+1}`,
+                        color:getRandomColor(),
+                        id:`u${store.state.dataElements.length+1}`,
+                        x:200,
+                        y:200,
+                        width:100,
+                        height:100,
+                        visible:true,
+                        component:"Text"
+                    }
+                )
             }
             return { AddElement, AddText }
         }

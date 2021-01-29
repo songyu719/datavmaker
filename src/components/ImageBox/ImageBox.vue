@@ -6,7 +6,6 @@
 
 <script lang="ts">
     import { defineComponent,reactive,onMounted,toRefs } from 'vue'
-    import {useStore} from "@/store";
     import useState from "@/hooks/useState";
     import IimageBox from "@/components/ImageBox/IImageBox";
 
@@ -17,10 +16,9 @@
         },
         setup(props,ctx){
             const state = useState<IimageBox>(props.id)
-            const store = useStore()
-
              const  { src } = toRefs(state)
              return { src }
+
         }
     })
 </script>

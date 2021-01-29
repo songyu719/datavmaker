@@ -10,32 +10,35 @@
 
 <script lang="ts">
     import {computed, defineComponent, ref} from "vue";
-    import {useStore} from "vuex";
-    import {storeKey} from "@/store"
+    import {useStore} from "@/store"
     import "@/assets/iconfont.css"
+    import useCommits from "@/hooks/useCommits";
     export default defineComponent({
         name: "item",
         props:{
             name:{
-                type:String
+                type:String,
+                required:true
             },
             id:{
-                type:String
+                type:String,
+                required:true
             },
             active:{
-                type:Boolean
+                type:Boolean,
+                required:true
             }
         },
         setup(props, ctx) {
 
-            const store = useStore(storeKey);
+            const store = useStore();
+            const {updateName,toggleVisible,toggleLock,toggleActive} = useCommits();
             const name = computed({
                 get(){
                     return  store.state.dataElements.find(item=>item.id==props.id)!.name
                 },
-                set(value){
-                    console.log(value)
-                    store.commit("updateName",{name:value})
+                set(value:string){
+                    updateName({name:value})
                 }
             })
             const visible = computed(()=>{
@@ -48,17 +51,17 @@
             function toggle(type:string){
                switch (type) {
                     case "visible":
-                        store.commit("toggleVisible",{id:props.id})
+                        toggleVisible({id:props.id})
                         break;
 
                     case "lock":
-                        store.commit("toggleLock",{id:props.id})
+                        toggleLock({id:props.id})
                         break;
                }
             }
 
             function click() {
-                store.commit("toggleActive",{id:props.id,isActive:true})
+                toggleActive({id:props.id,isActive:true})
             }
 
             return {toggle,props,click,name,visible,lock}

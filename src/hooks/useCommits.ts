@@ -19,17 +19,10 @@ export default  ()=>{
       }
     
       /**
-        * 更新位置
+        * 更新大小位置信息
         */
-      function  updatePos(payload:{pos:{x:number,y:number},id:string }) {
-        store.commit("updatePos",payload)
-      }
-    
-      /**
-        * 更新大小
-        */
-      function  updateSize(payload:{pos:{x:number,y:number,w:number,h:number},id:string }) {
-        store.commit("updateSize",payload)
+      function  updateRect(payload:{rect:{x?:number,y?:number,w?:number,h?:number},id:string }) {
+        store.commit("updateRect",payload)
       }
     
       /**
@@ -81,9 +74,7 @@ export default  ()=>{
         
              sortLayer,//图层排序
         
-             updatePos,//更新位置
-        
-             updateSize,//更新大小
+             updateRect,//更新大小位置信息
         
              updateName,//更改图层名
         

@@ -10,24 +10,14 @@ const mutations = {
         sortLayer(state:State,payload:dataElement[]){
                 state.dataElements = payload
             },
-        //更新位置
-        updatePos(state:State,payload:{pos:{x:number,y:number},id:string }){
+        //更新大小位置信息
+        updateRect(state:State,payload:{rect:{x?:number,y?:number,w?:number,h?:number},id:string }){
             for(let o of state.dataElements){
                 if(o.id === payload.id){
-                    o.x=payload.pos.x
-                    o.y=payload.pos.y
-                }
-            }
-        },
-        //更新大小
-        updateSize(state:State,payload:{pos:{x:number,y:number,w:number,h:number},id:string }){
-            for(let o of state.dataElements){
-                if(o.id === payload.id){
-                    o.width=payload.pos.w
-                    o.height = payload.pos.h
-                    o.x=payload.pos.x
-                    o.y=payload.pos.y
-
+                    payload.rect.w && (o.width = payload.rect.w)
+                    payload.rect.h && (o.height = payload.rect.h)
+                    payload.rect.x && (o.x=payload.rect.x)
+                    payload.rect.y && (o.y=payload.rect.y)
                 }
             }
         },
@@ -63,6 +53,8 @@ const mutations = {
                 target.visible = !target.visible;
             }
         },
+
+
 
         //初始化图层私有状态
         initState(state:State,payload:{id:string,data:any}){
