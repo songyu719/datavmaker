@@ -21,14 +21,14 @@ export default  ()=>{
       /**
         * 更新大小位置信息
         */
-      function  updateRect(payload:{rect:{x?:number,y?:number,w?:number,h?:number},id:string }) {
+      function  updateRect(payload:{ rect: { x?: number, y?: number, w?: number, h?: number }, id: string }) {
         store.commit("updateRect",payload)
       }
     
       /**
         * 更改图层名
         */
-      function  updateName(payload:{name:string}) {
+      function  updateName(payload:{ name: string }) {
         store.commit("updateName",payload)
       }
     
@@ -42,29 +42,36 @@ export default  ()=>{
       /**
         * 切换激活状态
         */
-      function  toggleActive(payload:{id:string,isActive:boolean}) {
+      function  toggleActive(payload:{ id: string, isActive: boolean }) {
         store.commit("toggleActive",payload)
       }
     
       /**
         * 切换锁定状态
         */
-      function  toggleLock(payload:{id:string}) {
+      function  toggleLock(payload:{ id: string }) {
         store.commit("toggleLock",payload)
       }
     
       /**
         * 切换可见状态
         */
-      function  toggleVisible(payload:{id:string}) {
+      function  toggleVisible(payload:{ id: string }) {
         store.commit("toggleVisible",payload)
       }
     
       /**
         * 初始化图层私有状态
         */
-      function  initState(payload:{id:string,data:any}) {
+      function  initState(payload:{ id: string, data: any }) {
         store.commit("initState",payload)
+      }
+    
+      /**
+        *  删除单个图层
+        */
+      function  delItem(payload:{ id: string }) {
+        store.commit("delItem",payload)
       }
     
 
@@ -87,6 +94,8 @@ export default  ()=>{
              toggleVisible,//切换可见状态
         
              initState,//初始化图层私有状态
+        
+             delItem,// 删除单个图层
         
     }
 }

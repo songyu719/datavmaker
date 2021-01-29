@@ -7,7 +7,7 @@ const template = require("art-template")
 
 async function  read() {
    const content =   fs.readFileSync(path.join(__dirname,"../src/store/mutations.ts"),'utf8' )
-   const re = /^\s+\/\/(.*)[\r\n]\s+(\w*)\(state:State,payload:(.*)\)|(\w*)\(state:State,payload:(.*)\)/gm
+   const re = /^\s+\/\/(.*)[\r\n]\s+(\w*)\(state:\s+State,\s+payload:\s+(.*)\)|(\w*)\(state:\s+State,\s+payload:\s+(.*)\)/gm
    let r =""
     let mutations = []
     while ( r = re.exec(content)){
@@ -33,7 +33,7 @@ async function  read() {
     })
     const writeFile = path.join(__dirname,"../src/hooks/useCommits.ts");
     fs.writeFileSync(writeFile,code)
-    console.log("生成成功")
+
 }
 
 read();
