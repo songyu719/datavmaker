@@ -5,9 +5,12 @@
         </div>
         <el-divider style="margin: 0px"></el-divider>
         <div class="propsbox">
-            <el-row :gutter="10" v-for="(v,k) in currentElement">
+            <el-row :gutter="10" >
                 <el-col :span="24" >
-                    <PropInput  placeholder="路径" display="row"  :prop-name="k"  v-model="src"  />
+                    <PropInput  placeholder="路径" display="row"  prop-name="地址"  v-model="src"  />
+                </el-col>
+                <el-col :span="24">
+                    <PropInput  placeholder="描述" display="row"  prop-name="描述"  v-model="alt"  />
                 </el-col>
             </el-row>
         </div>
@@ -29,18 +32,27 @@
            const currentElement =  computed(()=>{
                return store.getters.currentElement.customData
            })
+            const { updateProps } = useCommits()
+
             const src = computed({
                 get(){
-                    return store.getters.currentElement.customData.src
+                    console.log(currentElement)
+                    return currentElement.value.src
                 },
                 set(v){
-                    store.getters.currentElement.customData.src = v;
-
-
+                    updateProps({id:store.getters.currentElement.id,props:"src",value:v})
                 },
             })
+            const alt = computed({
+                get(){
+                    return currentElement.value.alt
+                },
+                set(v){
+                    updateProps({id:store.getters.currentElement.id,props:"alt",value:v})
+                }
+            })
 
-           return {currentElement,src}
+           return {currentElement,src,alt}
         }
 
     })

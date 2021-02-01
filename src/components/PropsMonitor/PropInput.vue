@@ -60,7 +60,6 @@
             color: @input-label-color;
             font-size: 12px;
             padding: 5px;
-            width: 45%;
             display: block;
             text-align: left;
         }

@@ -1,11 +1,11 @@
 <template>
     <div class="imagebox">
-        <img :src="src" alt="">
+        <img :src="src" :alt="alt">
     </div>
 </template>
 
 <script lang="ts">
-    import { defineComponent,reactive,onMounted,toRefs } from 'vue'
+    import { defineComponent,toRefs,watchEffect,watch } from 'vue'
     import useState from "@/hooks/useState";
     import IimageBox from "@/components/ImageBox/IImageBox";
 
@@ -16,9 +16,12 @@
         },
         setup(props,ctx){
             const state = useState<IimageBox>(props.id)
-             const  { src } = toRefs(state)
-             return { src }
+            const {src,alt} =  toRefs(state)
+            watch(alt,()=>{
+                console.log("我变了能咋地",alt.value)
+            })
 
+             return {src,alt}
         }
     })
 </script>

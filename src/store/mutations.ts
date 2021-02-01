@@ -6,7 +6,6 @@ const mutations = {
     changeScale(state: State, payload: number) {
         state.scale = payload;
     },
-
     //图层排序
     sortLayer(state: State, payload: dataElement[]) {
         state.dataElements = payload
@@ -65,6 +64,14 @@ const mutations = {
     delItem(state: State, payload: { id: string }) {
         const idx = state.dataElements.findIndex((item) => item.id == payload.id);
         state.dataElements.splice(idx, 1);
+    },
+    //修改组件的某个属性
+    updateProps(state: State,payload: { id: string,props: string,value: any }) {
+        const target = state.dataElements.find((item) => item.id == payload.id)
+        console.log(payload)
+        if(target){
+            target.customData[payload.props] = payload.value
+        }
     }
 
 }

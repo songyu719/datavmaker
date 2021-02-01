@@ -74,6 +74,13 @@ export default  ()=>{
         store.commit("delItem",payload)
       }
     
+      /**
+        * 修改组件的某个属性
+        */
+      function  updateProps(payload:{ id: string,props: string,value: any }) {
+        store.commit("updateProps",payload)
+      }
+    
 
     return {
         
@@ -96,6 +103,8 @@ export default  ()=>{
              initState,//初始化图层私有状态
         
              delItem,// 删除单个图层
+        
+             updateProps,//修改组件的某个属性
         
     }
 }

@@ -43,7 +43,8 @@ export default createStore<State>({
                 component: "ImageBox", monitor: "ImageMonitor",
                 lock: false,
                 customData: {
-                    src: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1160360589,2429665544&fm=26&gp=0.jpg"
+                    src: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1160360589,2429665544&fm=26&gp=0.jpg",
+                    alt:""
                 }
             },
         ],

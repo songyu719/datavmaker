@@ -7,11 +7,10 @@ const template = require("art-template")
 
 async function  read() {
    const content =   fs.readFileSync(path.join(__dirname,"../src/store/mutations.ts"),'utf8' )
-   const re = /^\s+\/\/(.*)[\r\n]\s+(\w*)\(state:\s+State,\s+payload:\s+(.*)\)|(\w*)\(state:\s+State,\s+payload:\s+(.*)\)/gm
+   const re = /^\s{0,}\/\/(.*)\s{0,}(\w*)\(state:\s{0,}State,\s{0,}payload:\s+(.*)\)|(\w*)\(state:\s{0,}State,\s{0,}payload:\s{0,}(.*)\)/gm
    let r =""
     let mutations = []
     while ( r = re.exec(content)){
-       console.log(1,r[3])
         if(r[1]){
             mutations.push({
                 doc:r[1],
