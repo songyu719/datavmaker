@@ -5,9 +5,8 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent,toRefs,watchEffect,watch } from 'vue'
-    import useState from "@/hooks/useState";
-    import IimageBox from "@/components/ImageBox/IImageBox";
+    import { defineComponent,toRefs } from 'vue'
+    import {useStore} from "@/store";
 
     export default defineComponent({
         name: "ImageBox",
@@ -15,13 +14,10 @@
           id:{type:String,required:true}
         },
         setup(props,ctx){
-            const state = useState<IimageBox>(props.id)
-            const {src,alt} =  toRefs(state)
-            watch(alt,()=>{
-                console.log("我变了能咋地",alt.value)
-            })
+            const store = useStore()
+             const state = store.getters.getElemenById(props.id)
 
-             return {src,alt}
+             return { ...toRefs(state) }
         }
     })
 </script>

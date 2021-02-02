@@ -11,7 +11,7 @@ import "./global.css"
 
 import ImageBox from "@/components/ImageBox/ImageBox.vue"
 import ImageMonitor from "@/components/ImageBox/ImageMonitor.vue"
-import Text from "@/components/Text.vue";
+import Text from "@/components/Text/Text.vue";
 
 
 const app =  createApp(App)

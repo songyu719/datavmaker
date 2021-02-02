@@ -40,21 +40,45 @@ export default createStore<State>({
                 width: 200,
                 active: true,
                 visible: true,
-                component: "ImageBox", monitor: "ImageMonitor",
+                component: "ImageBox",
+                monitor: "ImageMonitor",
                 lock: false,
                 customData: {
                     src: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1160360589,2429665544&fm=26&gp=0.jpg",
                     alt:""
                 }
             },
+            {
+                name: `图层2`,
+                color:"",
+                id: `u2`,
+                x: 300,
+                y: 300,
+                width: 200,
+                height: 80,
+                visible: true,
+                component: "Text",
+                monitor: "ImageMonitor",
+                lock:false,
+                active:false,
+                customData:{
+                    fontSize:18,
+                    color:"white",
+                    fontWidget:"normal",
+                    text:"请填写文字",
+                }
+            }
+
         ],
     },
-    mutations
-    ,
+    mutations,
     actions: {},
     getters: {
         currentElement(state) {
             return state.dataElements.find((item) => item.active)
+        },
+        getElemenById: (state) => (id:string) => {
+            return state.dataElements.find(item => item.id === id)!.customData
         }
     },
     modules: {}

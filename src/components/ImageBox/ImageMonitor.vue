@@ -36,7 +36,6 @@
 
             const src = computed({
                 get(){
-                    console.log(currentElement)
                     return currentElement.value.src
                 },
                 set(v){

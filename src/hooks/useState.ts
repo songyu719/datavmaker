@@ -1,10 +1,8 @@
 
 import {computed} from 'vue'
 import {useStore} from "@/store";
-export default function useState<T>(id:string):T{
+export default function myState<T>(id:string):T{
+        console.log("这里什么只有我自己呢",id)
         const store = useStore()
-         const target = computed(()=>{
-             return store.state.dataElements.find(item=>item.id=id);
-         })
-        return  target.value!.customData
+        return  store.state.dataElements.find(item=>item.id=id)!.customData
 }
