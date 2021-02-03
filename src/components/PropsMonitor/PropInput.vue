@@ -2,7 +2,8 @@
     <div class="inputBox" :style="style">
             <span v-if="propName">{{propName}}</span>
         <div class="input_wrap">
-            <input  :type="type" :value="modelValue" @input="handleInput" :placeholder="placeholder" />
+            <input  :type="type" :value="modelValue" @input="handleInput" :placeholder="placeholder"   />
+            <slot />
         </div>
 
 
@@ -64,7 +65,11 @@
             text-align: left;
         }
         .input_wrap{
-            flex:1
+            flex:1;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
         }
         input{
             outline: none;
@@ -75,5 +80,9 @@
             width: 100%;
             font-size: 12px;
         }
+
+    }
+    /deep/.el-color-picker--mini  .el-color-picker__trigger{
+        border: none!important;
     }
 </style>

@@ -12,13 +12,13 @@
       <el-button type="primary" class="iconfont iconchexiao" size="mini"></el-button>
       <el-button type="primary" class="iconfont iconfanhui-copy" size="mini"></el-button>
 
-      <el-button type="primary" class="iconfont iconziyuan" size="mini"></el-button>
+      <el-button type="primary" class="iconfont iconziyuan"  size="mini"></el-button>
     </div>
 
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {useStore} from "@/store"
 import useCommits from "@/hooks/useCommits";
 import { defineComponent,onMounted } from "vue"
@@ -26,12 +26,9 @@ export default defineComponent({
   name: "ToolsBar",
   setup() {
     const store = useStore();
-    const {AddElements} = useCommits()
-
+    const {AddElements,updateProps} = useCommits()
     function getRandomColor() {
-
       return '#' + Math.floor(Math.random() * 16777215).toString(16);
-
     }
 
     function AddElement() {
@@ -71,6 +68,7 @@ export default defineComponent({
             component: "Text",
             lock:false,
             active:false,
+            monitor:"TextMonitor",
             customData:{
               fontSize:18,
               color:"white",
@@ -81,6 +79,8 @@ export default defineComponent({
 
       )
     }
+
+
 
 
 

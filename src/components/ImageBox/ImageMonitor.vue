@@ -15,13 +15,29 @@
             </el-row>
         </div>
     </div>
+    <div class="box">
+        <div class="title">
+            <span>图片事件</span>
+        </div>
+        <el-divider style="margin: 0px"></el-divider>
+        <div class="propsbox"  v-for="(val,key) in events">
+            <el-row :gutter="10"  >
+                {{key}}
+                <el-col :span="24" v-for="(sval,skey) in val" >
+                    {{sval.name}}
+                </el-col>
+
+            </el-row>
+        </div>
+    </div>
 </template>
 
-<script>
-    import PropInput from "../PropsMonitor/PropInput";
-    import {useStore} from "@/store";
+<script lang="ts">
+    import PropInput from "@/components/PropsMonitor/PropInput.vue"
+    import {useStore} from "@/store"
     import {defineComponent,computed} from "vue"
     import useCommits from "@/hooks/useCommits";
+    import IImageBox from "@/components/ImageBox/IImageBox";
     export default defineComponent({
         name: "ImageMonitor",
         components:{
@@ -29,7 +45,7 @@
         },
         setup(props,ctx){
            const store = useStore()
-           const currentElement =  computed(()=>{
+           const currentElement =  computed<IImageBox>(()=>{
                return store.getters.currentElement.customData
            })
             const { updateProps } = useCommits()
@@ -51,7 +67,11 @@
                 }
             })
 
-           return {currentElement,src,alt}
+            const events = computed(()=>{
+                return currentElement.value.events
+            })
+
+           return {currentElement,src,alt,events}
         }
 
     })

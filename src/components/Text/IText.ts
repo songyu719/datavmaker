@@ -3,4 +3,6 @@ export default  interface IText {
     color:string,
     fontWidget:string,
     text:string,
+    click:(arg:any)=>void,
+
 }

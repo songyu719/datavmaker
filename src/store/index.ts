@@ -45,7 +45,25 @@ export default createStore<State>({
                 lock: false,
                 customData: {
                     src: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1160360589,2429665544&fm=26&gp=0.jpg",
-                    alt:""
+                    alt:"",
+                    events:{
+                        load:[
+                            {
+                                name:"初次加载",
+                                command:()=>{
+                                    console.log("图片被加载了")
+                                }
+                            }
+                        ],
+                        mounted:[
+                            {
+                                name:"挂载",
+                                command:()=>{
+                                    console.log("图片被加载了")
+                                }
+                            }
+                        ]
+                    }
                 }
             },
             {
@@ -58,14 +76,17 @@ export default createStore<State>({
                 height: 80,
                 visible: true,
                 component: "Text",
-                monitor: "ImageMonitor",
+                monitor: "TextMonitor",
                 lock:false,
                 active:false,
                 customData:{
                     fontSize:18,
-                    color:"white",
+                    color:"#ff0000",
                     fontWidget:"normal",
                     text:"请填写文字",
+                    click:()=>{
+                        console.log("10080")
+                    }
                 }
             }
 
@@ -77,7 +98,7 @@ export default createStore<State>({
         currentElement(state) {
             return state.dataElements.find((item) => item.active)
         },
-        getElemenById: (state) => (id:string) => {
+        getElemenById: (state) => <T>(id:string):T => {
             return state.dataElements.find(item => item.id === id)!.customData
         }
     },

@@ -12,12 +12,13 @@ import "./global.css"
 import ImageBox from "@/components/ImageBox/ImageBox.vue"
 import ImageMonitor from "@/components/ImageBox/ImageMonitor.vue"
 import Text from "@/components/Text/Text.vue";
-
+import TextMonitor from "@/components/Text/TextMonitor.vue";
 
 const app =  createApp(App)
     app.component("ImageBox",ImageBox)
     app.component("ImageMonitor",ImageMonitor)
     app.component("Text", Text)
+    app.component("TextMonitor",TextMonitor)
     app.use(store,storeKey)
     app.use(ElementPlus)
     app.use(Vue3DraggableResizable)
