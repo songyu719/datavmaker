@@ -1,7 +1,7 @@
 <template>
     <div class="designer" id="designer" ref="wrap">
         <Vue3DraggableResizable class="canvasWrap"   :style="{transform:'scale('+scale+')'}" trigger-key="right" :resizable="false" >
-            <DraggableContainer class="canvas">
+            <DraggableContainer class="canvas" reference-line-color="skyblue" reference-line-visible="true">
                 <Vue3DraggableResizable
                         :parent-scale-x="scale"
                          :resizable="!item.lock"

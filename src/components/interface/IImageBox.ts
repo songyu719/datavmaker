@@ -1,12 +1,13 @@
 
 
-interface Event {
+
+declare  interface Event {
     name:string,
     command:()=>void
 }
 
+declare  interface IimageBox {
 
-export default  interface IimageBox {
     src:string,
     alt:string,
     events?: {
@@ -15,3 +16,5 @@ export default  interface IimageBox {
     },
 
 }
+
+export  {IimageBox,Event}

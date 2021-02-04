@@ -1,4 +1,6 @@
-export default  interface IText {
+
+declare interface IText {
+
     fontSize:number,
     color:string,
     fontWidget:string,
@@ -6,3 +8,4 @@ export default  interface IText {
     click:(arg:any)=>void,
 
 }
+export default IText

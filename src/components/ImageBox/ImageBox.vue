@@ -7,7 +7,7 @@
 <script lang="ts">
     import {defineComponent, toRefs} from 'vue'
     import {useStore} from "@/store";
-    import IimageBox from "@/components/ImageBox/IImageBox";
+    import {IimageBox} from "@/components/interface/IImageBox";
 
 
     export default defineComponent({

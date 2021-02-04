@@ -29,7 +29,7 @@
     import { defineComponent,computed } from 'vue'
     import useCommits from "@/hooks/useCommits";
     import {useStore} from "@/store";
-    import IText from "@/components/Text/IText";
+    import IText from "@/components/interface/IText";
     import PropInput from "@/components/PropsMonitor/PropInput.vue";
     export default defineComponent({
         name: "TextMonitor",

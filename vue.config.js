@@ -1,8 +1,33 @@
 const path = require('path')
+const  MonacoWebpackPlugin  = require('monaco-editor-webpack-plugin')
+const  CopyPlugin  = require('copy-webpack-plugin')
 module.exports = {
     chainWebpack: config => {
         const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
         types.forEach(type => addStyleResource(config.module.rule('less').oneOf(type)))
+    },
+    configureWebpack: config => {
+
+        config.plugins.push(
+            new MonacoWebpackPlugin()
+        )
+
+        let  interfaceFiles = [
+
+        ]
+             interfaceFiles.push({
+                 from:__dirname+"/src/components/interface/IImageBox.ts", to:__dirname+"/dist/interface"
+             })
+
+
+        config.plugins.push( new CopyPlugin({
+            patterns:interfaceFiles,
+            options: {
+                concurrency: 100,
+            },
+        }))
+        console.log(config.plugins)
+
     },
     css: {
         loaderOptions: {
@@ -10,6 +35,9 @@ module.exports = {
                 javascriptEnabled: true
             }
         }
+    },
+    devServer:{
+        contentBase: ['public','src/components/']
     }
 }
 

@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import {defineComponent,toRefs,computed,onMounted,ref} from 'vue'
-import IText from "@/components/Text/IText";
+import IText from "@/components/interface/IText";
 import {useStore} from "@/store";
 import useCommits from "@/hooks/useCommits";
 

@@ -20,36 +20,44 @@
             <span>图片事件</span>
         </div>
         <el-divider style="margin: 0px"></el-divider>
-        <div class="propsbox"  v-for="(val,key) in events">
-            <el-row :gutter="10"  >
-                {{key}}
-                <el-col :span="24" v-for="(sval,skey) in val" >
-                    {{sval.name}}
-                </el-col>
+        <div class="eventbox"  v-for="(val,key) in events">
+                <div class="event" v-text="upperCase(key)">
+                </div>
 
-            </el-row>
+                <ul class="func">
+                <li  v-for="(sval) in val" >
+                    <span>{{sval.name}}</span>   <i  class="iconfont icondelete"></i>
+                </li>
+                    <li>
+                       <el-button size="mini" @click="show=true">添加</el-button>
+                    </li>
+                </ul>
         </div>
     </div>
+    <Editor v-model="show" @save="addEvent" />
 </template>
 
 <script lang="ts">
     import PropInput from "@/components/PropsMonitor/PropInput.vue"
     import {useStore} from "@/store"
-    import {defineComponent,computed} from "vue"
+    import {defineComponent,computed,ref} from "vue"
     import useCommits from "@/hooks/useCommits";
-    import IImageBox from "@/components/ImageBox/IImageBox";
+    import {IimageBox,Event} from "@/components/interface/IImageBox";
+    import Editor from "@/components/CodeEditor/Index.vue"
+
     export default defineComponent({
         name: "ImageMonitor",
         components:{
-            PropInput
+            PropInput,
+            Editor
         },
         setup(props,ctx){
            const store = useStore()
-           const currentElement =  computed<IImageBox>(()=>{
+           const currentElement = computed <IimageBox>(()=>{
                return store.getters.currentElement.customData
            })
+            const show = ref(false)
             const { updateProps } = useCommits()
-
             const src = computed({
                 get(){
                     return currentElement.value.src
@@ -66,18 +74,26 @@
                     updateProps({id:store.getters.currentElement.id,props:"alt",value:v})
                 }
             })
-
             const events = computed(()=>{
                 return currentElement.value.events
             })
+            const upperCase=(v:string)=>{
+               return v.replace(v[0],v[0].toUpperCase())
+            }
 
-           return {currentElement,src,alt,events}
+            const addEvent = (event:Event)=>{
+                currentElement.value.events?.load?.push(
+                    event
+                )
+            }
+
+           return {currentElement,src,alt,events,upperCase,show,addEvent}
         }
 
     })
 </script>
 
-<style scoped>
+<style scoped lang="less">
     .box{
         width: 100%;
         display: flex;
@@ -99,9 +115,39 @@
     .propsbox{
         padding: 10px;
     }
+    .eventbox{
+        margin: 10px;
+
+        padding: 10px;
+    }
     .el-col {
         margin-bottom: 10px;
+        color: @fontColor;
     }
+    .event{
+        flex:1;
+        color: @fontColor;
+        text-align: left;
+        padding: 5px;
 
+    }
+    .func{
+        color: @fontColor;
+        li{
+            margin-bottom: 10px;
+            font-size: 12px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            span{
+                background: @input-bg-color;
+                padding: 5px;
+                flex:1;
+                border: solid 1px @input-border-color;
+                margin-right: 10px;
+            }
+        }
+    }
 
 </style>
