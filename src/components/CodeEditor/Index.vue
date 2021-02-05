@@ -88,14 +88,14 @@
                 //     '    static next():string',
                 //     '}',
                 // ].join('\n');
-                    const {data}:{data:string} = await  axios.get("/interface/IImageBox.ts")
+                    const {data}:{data:string} = await  axios.get("/interface/commits.d.ts")
                     monaco.languages.typescript.typescriptDefaults.addExtraLib(data.replace(/\s*export\s+default\s+\w+/g,""))
                     monacoEditor = monaco.editor.create(document.getElementById("editor")!, {
                         value:
-                            `//这里可以写ts代码
-function dosome(store){
-
-}
+                            `//只能是一个匿名函数
+(function(commits:Commits){
+    const { updateProps } = commits;
+})
  `,
                         language: 'typescript',
                         theme: "vs-dark"

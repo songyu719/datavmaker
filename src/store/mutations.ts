@@ -53,13 +53,6 @@ const mutations = {
             target.visible = !target.visible;
         }
     },
-    //初始化图层私有状态
-    initState(state: State, payload: { id: string, data: any }) {
-        const target = state.dataElements.find(item => item.id == payload.id);
-        if (target) {
-            target.customData = payload.data
-        }
-    },
     // 删除单个图层
     delItem(state: State, payload: { id: string }) {
         const idx = state.dataElements.findIndex((item) => item.id == payload.id);

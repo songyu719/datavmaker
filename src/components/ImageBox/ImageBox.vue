@@ -5,9 +5,10 @@
 </template>
 
 <script lang="ts">
-    import {defineComponent, toRefs} from 'vue'
+    import {defineComponent, toRefs,onMounted} from 'vue'
     import {useStore} from "@/store";
     import {IimageBox} from "@/components/interface/IImageBox";
+    import useCommits from "@/hooks/useCommits";
 
 
     export default defineComponent({
@@ -17,16 +18,28 @@
         },
         setup(props, ctx) {
             const store = useStore()
+            const Commits = useCommits()
             const state = <IimageBox>store.getters.getElemenById(props.id)
             const load = () => {
                 for (let o in state.events) {
                     if (o == "load") {
                         for (let fun of state.events[o]!) {
-                            fun.command()
+                            fun.command(Commits)
                         }
                     }
                 }
             }
+            onMounted(()=>{
+                for(let o in state.events){
+                    if(o == "mounted"){
+                        for(let fun of state.events[o]!){
+                            fun.command(Commits)
+                        }
+                    }
+                }
+
+            })
+
             return {...toRefs(state), load}
         }
     })

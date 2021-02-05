@@ -61,13 +61,6 @@ export default  ()=>{
       }
     
       /**
-        * 初始化图层私有状态
-        */
-      function  initState(payload:{ id: string, data: any }) {
-        store.commit("initState",payload)
-      }
-    
-      /**
         *  删除单个图层
         */
       function  delItem(payload:{ id: string }) {
@@ -99,8 +92,6 @@ export default  ()=>{
              toggleLock,//切换锁定状态
         
              toggleVisible,//切换可见状态
-        
-             initState,//初始化图层私有状态
         
              delItem,// 删除单个图层
         

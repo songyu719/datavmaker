@@ -1,7 +1,7 @@
 <template>
     <div class="designer" id="designer" ref="wrap">
         <Vue3DraggableResizable class="canvasWrap"   :style="{transform:'scale('+scale+')'}" trigger-key="right" :resizable="false" >
-            <DraggableContainer class="canvas" reference-line-color="skyblue" reference-line-visible="true">
+            <DraggableContainer class="canvas" reference-line-color="skyblue" :reference-line-visible="true">
                 <Vue3DraggableResizable
                         :parent-scale-x="scale"
                          :resizable="!item.lock"
@@ -22,9 +22,9 @@
                         @click="active(item)"
                 >
                     <div style="width: 100%;height: 100%;overflow: hidden">
-                        <component :is="item.component" :id="item.id"></component>
-                    </div>
 
+                        <component :is="item.component" :width="item.width" :height="item.height"  :id="item.id"></component>
+                    </div>
                 </Vue3DraggableResizable>
             </DraggableContainer>
         </Vue3DraggableResizable>
@@ -38,8 +38,12 @@
     import scalelv from "@/utils/scaleLv";
     import useScale from "@/hooks/useScale";
     import useCommits from "@/hooks/useCommits";
+    import EChartBar from "@/components/EChartBar/EChartBar.vue";
     export default defineComponent({
         name: "Designer",
+        components:{
+            EChartBar
+        },
         props:{
             name
         },

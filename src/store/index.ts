@@ -70,10 +70,10 @@ export default createStore<State>({
                 name: `图层2`,
                 color:"",
                 id: `u2`,
-                x: 300,
-                y: 300,
-                width: 200,
-                height: 80,
+                x: 500,
+                y: 500,
+                width: 500,
+                height: 50,
                 visible: true,
                 component: "Text",
                 monitor: "TextMonitor",
@@ -88,7 +88,24 @@ export default createStore<State>({
                         console.log("10080")
                     }
                 }
-            }
+            },
+            {
+                name: `图层3`,
+                color:"",
+                id: `u3`,
+                x: 300,
+                y: 300,
+                width: 500,
+                height: 500,
+                visible: true,
+                component: "EChartBar",
+                monitor: "TextMonitor",
+                lock:false,
+                active:false,
+                customData:{
+
+                }
+            },
 
         ],
     },

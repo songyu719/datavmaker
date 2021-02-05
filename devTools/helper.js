@@ -30,8 +30,13 @@ async function  read() {
     const code = template(__dirname+"/mutations.art",{
         mutations
     })
+    const typesCode = template(__dirname+"/commits.d.art",{
+        mutations
+    })
     const writeFile = path.join(__dirname,"../src/hooks/useCommits.ts");
+    const typesFile = path.join(__dirname,"../src/components/interface/commits.d.ts")
     fs.writeFileSync(writeFile,code)
+    fs.writeFileSync(typesFile,typesCode)
 
 }
 

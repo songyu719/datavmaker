@@ -14,7 +14,7 @@
 
 <script lang="ts">
 
-import {defineComponent, ref, computed} from 'vue'
+import {defineComponent, ref, computed,getCurrentInstance} from 'vue'
 import draggable from 'vuedraggable'
 import {useStore} from '@/store'
 import {dataElement} from "@/store"
@@ -27,7 +27,7 @@ export default defineComponent({
     draggable,
     Item
   },
-  setup(props, ctx) {
+  setup(props) {
     const store = useStore();
     const {sortLayer} = useCommits()
     const list = computed({

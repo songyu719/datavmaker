@@ -3,7 +3,7 @@
 
 declare  interface Event {
     name:string,
-    command:()=>void
+    command:(arg:any)=>void
 }
 
 declare  interface IimageBox {

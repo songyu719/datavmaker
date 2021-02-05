@@ -1,0 +1,8 @@
+declare interface Commits {
+       {{each mutations}}
+          /**
+            * {{$value.doc}}
+            */
+          {{$value.name}}(payload:{{$value.interface}});
+       {{/each}}
+}
