@@ -24,7 +24,7 @@
                 for (let o in state.events) {
                     if (o == "load") {
                         for (let fun of state.events[o]!) {
-                            fun.command(Commits)
+                            fun.command(Commits,state)
                         }
                     }
                 }

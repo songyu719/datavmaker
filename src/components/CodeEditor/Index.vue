@@ -88,12 +88,17 @@
                 //     '    static next():string',
                 //     '}',
                 // ].join('\n');
-                    const {data}:{data:string} = await  axios.get("/interface/commits.d.ts")
-                    monaco.languages.typescript.typescriptDefaults.addExtraLib(data.replace(/\s*export\s+default\s+\w+/g,""))
+                    const  commnits = await  axios.get("/interface/commits.d.ts")
+                    const  IImageBox = await  axios.get('/interface/IImageBox.ts')
+                    const regex = /export[\w\W]*/g
+                    const image = IImageBox.data.replace(regex,"");
+                    console.log(image)
+                    monaco.languages.typescript.typescriptDefaults.addExtraLib(commnits.data.replace(regex,""))
+                    monaco.languages.typescript.typescriptDefaults.addExtraLib(IImageBox.data.replace(regex,""))
                     monacoEditor = monaco.editor.create(document.getElementById("editor")!, {
                         value:
                             `//只能是一个匿名函数
-(function(commits:Commits){
+(function(commits:Commits,target:IimageBox){
     const { updateProps } = commits;
 })
  `,

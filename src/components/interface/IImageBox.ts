@@ -3,7 +3,7 @@
 
 declare  interface Event {
     name:string,
-    command:(arg:any)=>void
+    command:(...arg:any)=>void
 }
 
 declare  interface IimageBox {
@@ -17,4 +17,4 @@ declare  interface IimageBox {
 
 }
 
-export  {IimageBox,Event}
+ export  {IimageBox,Event}
