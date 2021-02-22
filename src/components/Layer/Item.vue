@@ -1,19 +1,15 @@
 <template>
-  <li :class="{active:props.active}" @click="click">
-    <div class="inputbox"><input type="text" v-model="name"/></div>
-    <div class="btns">
-      <i @click="toggle('visible')" :class="{iconfont:true,'icon-close-eyes':!visible,'icon-open-eyes':visible }"></i>
-      <i @click="toggle('lock')" :class="lock?'el-icon-lock':'el-icon-unlock'"></i>
-      <i @click="toggle('delItem')" class="iconfont icondelete"></i>
-    </div>
+  <li class="listItem">
+   <span> {{ name }} </span>
+
   </li>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, ref} from "vue";
-import {useStore} from "@/store"
+import {defineComponent,} from "vue";
+
 import "@/assets/iconfont.css"
-import useCommits from "@/hooks/useCommits";
+
 
 export default defineComponent({
   name: "item",
@@ -22,111 +18,65 @@ export default defineComponent({
       type: String,
       required: true
     },
-    id: {
-      type: String,
-      required: true
-    },
-    active: {
-      type: Boolean,
-      required: true
-    }
+
+
   },
   setup(props, ctx) {
 
-    const store = useStore();
-    const {updateName, toggleVisible, toggleLock, toggleActive, delItem} = useCommits();
-    const name = computed({
-      get() {
-        return store.state.dataElements.find(item => item.id == props.id)!.name
-      },
-      set(value: string) {
-        updateName({name: value})
-      }
-    })
-    const visible = computed(() => {
-      return store.state.dataElements.find(item => item.id == props.id)!.visible
-    })
-    const lock = computed(() => {
-      return store.state.dataElements.find(item => item.id == props.id)!.lock
 
-    })
-
-    function toggle(type: string) {
-      switch (type) {
-        case "visible":
-          toggleVisible({id: props.id})
-          break;
-
-        case "lock":
-          toggleLock({id: props.id})
-          break;
-
-        case "delItem":
-          delItem({id: props.id})
-          break;
-      }
-    }
-
-    function click() {
-      toggleActive({id: props.id, isActive: true})
-    }
-
-    return {toggle, props, click, name, visible, lock}
 
   }
 })
 </script>
 
 <style lang="less" scoped>
-li {
-  margin-bottom: 2px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  padding: 5px 10px;
-  flex-direction: row;
-  color: #fff;
-  justify-content: space-between;
-  user-select: none;
-  width: 180px;
 
-  .btns {
-    margin-left: 10px;
-    font-size: 16px;
-
-    i {
-      cursor: pointer;
-      padding: 5px;
+  .listItem {
+    position: relative;
+    margin-top: 10px;
+    width: 47%;
+    max-width: 120px;  /* 避免拖动ghost样式异常 */
+    height: 36px;
+    line-height: 36px;
+    cursor: move;
+    flex-shrink: 0;
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #F2F2F2;
+    border: 1px dashed transparent;
+    font-size: 12px;
+     span {
+       display: block;
+       width: 100%;
+       padding: 0 3px;
+       overflow: hidden;
+       white-space: nowrap;
+       text-overflow: ellipsis;
+       word-wrap: normal;
+       word-break: normal;
 
     }
-
-    .icon-open-eyes {
-      font-size: 20px;
+    &:hover {
+      color: #2b9939;
+      border: 1px dashed #2b9939;
+      box-shadow: 0 0 4px 1px #2b9939;
     }
+
   }
-
-  .inputbox {
-    flex: 1;
-
-    input {
-      width: 100%;
-      outline: none;
-      color: #fff;
-      border: none;
-      background: transparent;
-      padding: 5px;
-
-      &:focus {
-        border: none;
-      }
-    }
+  .line {
+    font-size: 12px;
+    line-height: 18px;
   }
-
-}
-
-.active {
-  background: rgba(64, 158, 255, 0.8);
-}
+  .lineIcon {
+    color: #666;
+    font-size: 14px;
+  }
+  .disabled {
+    cursor: no-drop;
+    opacity: 0.8;
+  }
 
 </style>

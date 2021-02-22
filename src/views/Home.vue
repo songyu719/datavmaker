@@ -1,30 +1,19 @@
 <template>
-  <div class="home">
+
+  <el-container>
+    <el-header>Header</el-header>
     <el-container>
-      <el-header>
-        <ToolsBar/>
-      </el-header>
-      <el-container>
-        <el-aside width="200px">
-          <Layer></Layer>
-        </el-aside>
-        <el-container>
-          <el-main>
-            <Designer/>
-          </el-main>
-          <el-footer>
-            <span>画布大小:1920 * 1080</span>
-            <span>缩放:{{ scale }}%</span>
-            <span>元素数量:{{ dataElementCount }}</span>
-          </el-footer>
-        </el-container>
-        <el-aside width="250px">
-          <BasicMonitor/>
-          <component :is="currentElement.monitor"/>
-        </el-aside>
-      </el-container>
+      <el-aside width="260px">
+        <Layer/>
+      </el-aside>
+      <el-main>
+        <Designer />
+
+      </el-main>
+      <el-aside width="200px">Aside</el-aside>
     </el-container>
-  </div>
+  </el-container>
+
 </template>
 
 <script lang="ts">
@@ -49,7 +38,7 @@ export default defineComponent({
   setup(props, ctx) {
 
     const store = useStore();
-    const scale = computed(() => times(store.state.scale, 100))
+
     const dataElementCount = computed(() => store.state.dataElements.length)
     const currentElement = computed(() => {
       return store.getters.currentElement;
@@ -60,7 +49,7 @@ export default defineComponent({
       }
     });
 
-    return {scale, dataElementCount, currentElement}
+    return { dataElementCount, currentElement}
   }
 
 });
@@ -69,19 +58,19 @@ export default defineComponent({
 <style lang="less">
 .el-container {
   height: 100%;
+  overflow: hidden;
 }
 
 .el-main {
   padding: 0px !important;
 }
 
-.home {
-  height: 100%;
-}
+
 
 .el-header {
-  height: 40px !important;
+  box-shadow: 0 0 8px 1px rgba(0 ,0 ,0,0.3);
   background: @main-color;
+  z-index: 3;
 }
 
 .el-footer {
@@ -96,9 +85,11 @@ export default defineComponent({
 }
 
 .el-aside {
+  height: 100%;
   border-right: 1px solid @main-border-color;
   border-left: 1px solid @main-border-color;
   background-color: @panelColor;
+  overflow: hidden!important;
 }
 
 

@@ -1,33 +1,6 @@
 <template>
     <div class="designer" id="designer" ref="wrap">
-        <Vue3DraggableResizable class="canvasWrap"   :style="{transform:'scale('+scale+')'}" trigger-key="right" :resizable="false" >
-            <DraggableContainer class="canvas" reference-line-color="skyblue" :reference-line-visible="true">
-                <Vue3DraggableResizable
-                        :parent-scale-x="scale"
-                         :resizable="!item.lock"
-                         :draggable="!item.lock"
-                         v-show="item.visible"
-                        :active="item.active"
-                         @drag-end="dragend($event,item.id)"
-                         @resize-end="resized($event,item.id)"
-                        :parent-scale-y="scale"
-                         class="card"
-                        :style="{zIndex:dataElements.length-index}"
-                        :x="item.x"
-                        :y="item.y"
-                        :init-h="item.height"
-                        :init-w="item.width"
-                        v-for="(item,index) in dataElements"
-                        :key="item.id"
-                        @click="active(item)"
-                >
-                    <div style="width: 100%;height: 100%;overflow: hidden">
 
-                        <component :is="item.component" :width="item.width" :height="item.height"  :id="item.id"></component>
-                    </div>
-                </Vue3DraggableResizable>
-            </DraggableContainer>
-        </Vue3DraggableResizable>
     </div>
 </template>
 
@@ -49,44 +22,9 @@
         },
         setup(props,ctx){
             const  store = useStore();
-            const {changeScale,updateRect,toggleActive} = useCommits();
-            const  scale = computed(()=>{
-                return store.state.scale;
-            })
-            const dataElements = computed(()=>{
-                return store.state.dataElements
-            })
-            const curScale = useScale()
-            const  wrap = ref<HTMLElement>()
-            watchEffect(()=>{
-                changeScale(scalelv[curScale.value])
-            })
-            onMounted(()=>{
-                //计算默认缩放
-                nextTick(()=>{
-                    for(let i =0 ;i<scalelv.length;i++){
-                        if(scalelv[i] === round( divide(wrap.value!.clientWidth ,1920),1)){
-                            curScale.value = i;
-                            return
-                        }
-                    }
-                    changeScale(1)
-                })
-            });
-            function dragend(e: { x:number,y:number },id:string){
-                updateRect({rect:e,id})
 
-            }
-            function resized(rect:{x:number,y:number,w:number,h:number},id:string) {
-                    updateRect({rect,id})
-            }
-            function active(item:any) {
-                if(!item.lock){
-                    toggleActive({id:item.id,isActive:true})
-                }
 
-            }
-            return {scale,wrap,dataElements,dragend,resized,active}
+            return {}
         }
     })
 </script>

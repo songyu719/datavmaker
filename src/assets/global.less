@@ -1,9 +1,34 @@
 
-@main-color:#1d1e1f;//主色
+@main-color:#fff;//主色
 @main-border-color:#000;
-@fontColor:#fff; //字体颜色
-@panelColor:#1d2127; //面板颜色
-@input-bg-color:#262C33;//输入框颜色
+@fontColor:#000; //字体颜色
+@panelColor:#fff; //面板颜色
+@input-bg-color:#fcfcfc;//输入框颜色
 @input-border-color:#0B0C0D;//输入框边框颜色
 @input-label-color:darkgrey;
 @btn-color:rgba(64, 158, 255, 0.8);//按钮颜色
+
+
+
+::-webkit-scrollbar
+{
+  width: 2px;
+  height: 2px;
+  background-color: #F5F5F5;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+  border-radius: 3px;
+  background-color: #F5F5F5;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,.3);
+  background-color: #555;
+}

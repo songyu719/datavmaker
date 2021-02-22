@@ -1,23 +1,27 @@
 <template>
-  <div class="box-card">
+  <div class="layer">
+
+
+  <div class="box" v-for="group in list" :key="group.groupName">
     <div class="title">
-      <span>图层</span>
+      <span>{{group.groupName }}</span>
     </div>
     <el-divider style="margin: 0px"></el-divider>
-    <draggable tag="ul" v-model="list" class="layer_list">
+    <draggable tag="ul" v-model="group.componentList" class="groupList" :sort="false">
       <template #item="{element}">
-        <Item :name="element.name" :id="element.id" :key="element.id" :active="element.active"/>
+        <Item :name="element.title" :key="element.title" />
       </template>
     </draggable>
   </div>
+  </div>
+
 </template>
 
 <script lang="ts">
 
 import {defineComponent, ref, computed,getCurrentInstance} from 'vue'
 import draggable from 'vuedraggable'
-import {useStore} from '@/store'
-import {dataElement} from "@/store"
+import {UIElementGroup, useStore} from '@/store'
 import Item from './Item.vue'
 import useCommits from "@/hooks/useCommits"
 
@@ -29,14 +33,12 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore();
-    const {sortLayer} = useCommits()
     const list = computed({
-      get() {
-        return store.state.dataElements;
+      get(){
+        return store.state.dataElements
       },
-      set(value: dataElement[]) {
-        sortLayer(value)
-
+      set(value){
+        console.log(value)
       }
     })
 
@@ -47,28 +49,42 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-.box-card {
-  width: 100%;
-  height: 500px;
-}
+
+  .layer{
+    width: 260px;
+    height: 100%;
+    overflow-y: scroll;
+
+  }
+
+  .box{
+    padding: 10px;
+
+  }
 
 .title {
   display: flex;
   align-items: flex-start;
-  height: 40px;
-  line-height: 40px;
+  line-height: 20px;
   padding-left: 10px;
   color: #000;
   font-family: "微软雅黑";
-  color: #ffffff;
   font-weight: 400;
   font-size: 14px;
 
 }
 
-.layer_list {
-  width: 100%;
-  padding: 10px;
+.groupName {
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 18px;
+}
+.groupList {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  justify-content: space-between;
+
 }
 
 
