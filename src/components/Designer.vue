@@ -1,21 +1,31 @@
 <template>
-    <div class="designer" id="designer" ref="wrap">
 
-    </div>
+    <el-form  label-width="80px" class="designer" >
+    <draggable tag="div" v-model="array" group="dragGroup" class="designer" >
+
+        <template #item="{element}">
+            <Wrap :editorItem="element"   @onOperate="handleItemOperate" />
+        </template>
+
+    </draggable>
+    </el-form>
 </template>
 
 <script lang="ts">
-    import {onMounted, ref,defineComponent,nextTick,computed,watchEffect,reactive} from "vue";
+    import {defineComponent,computed} from "vue";
     import {useStore} from '@/store'
-    import {divide,round} from "@/utils/math"
-    import scalelv from "@/utils/scaleLv";
-    import useScale from "@/hooks/useScale";
-    import useCommits from "@/hooks/useCommits";
+    import Wrap from "@/components/Wrap.vue";
     import EChartBar from "@/components/EChartBar/EChartBar.vue";
+    import draggable from 'vuedraggable'
+    import {remove,moveUp,moveDown} from "@/utils/array";
+    import useCommits from "../hooks/useCommits"
+    import {UIElement} from "@/utils/UIElements";
     export default defineComponent({
         name: "Designer",
         components:{
-            EChartBar
+            EChartBar,
+            Wrap,
+            draggable
         },
         props:{
             name
@@ -23,47 +33,51 @@
         setup(props,ctx){
             const  store = useStore();
 
+            const { updateForm,AddFromElement } = useCommits();
 
-            return {}
+            const array = computed({
+                get(){
+                    return  store.state.formElements
+                },
+                set(v:UIElement[]){
+                    updateForm(v);
+                }
+            })
+
+            function handleItemOperate({item,command}:{item:any,command:string}){
+                switch (command) {
+                    case  "remove":
+                            remove(array.value,item)
+                        break;
+                    case "moveUp":
+                            moveUp(array.value,item)
+                        break;
+                    case "moveDown":
+                        moveDown(array.value,item)
+                        break
+                    case "copy":
+                        AddFromElement(item)
+                        break;
+                        default:
+                        break;
+                }
+            }
+
+            return {array,handleItemOperate}
         }
     })
 </script>
 
 <style scoped lang="less">
 
-    .vdr-container.active{
-        border-color: #fff;
-    }
     .designer {
         width: 100%;
         height: 100%;
+        background:@input-bg-color;
+        align-items: flex-start;
+        justify-content: flex-start;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        position: relative;
-        /*background:url("https://img.alicdn.com/tfs/TB184VLcPfguuRjSspkXXXchpXa-14-14.png");*/
-        background:@input-bg-color
     }
 
-
-
-    .canvasWrap{
-        position: absolute;
-        width: 1920px;
-        height: 1920px;
-        transform-origin: left top;
-        box-shadow:  #000 0 0 80px 0;
-
-    }
-
-    .card{
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        font-weight: bold;
-    }
 </style>

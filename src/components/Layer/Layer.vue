@@ -2,12 +2,16 @@
   <div class="layer">
 
 
-  <div class="box" v-for="group in list" :key="group.groupName">
+  <div class="box">
     <div class="title">
-      <span>{{group.groupName }}</span>
+      <span>报表原件</span>
     </div>
     <el-divider style="margin: 0px"></el-divider>
-    <draggable tag="ul" v-model="group.componentList" class="groupList" :sort="false">
+    <draggable tag="ul"
+               :group="{ name: 'dragGroup', pull: 'clone', put: false }"
+               v-model="list"
+               class="groupList"
+               :sort="false">
       <template #item="{element}">
         <Item :name="element.title" :key="element.title" />
       </template>
@@ -21,7 +25,7 @@
 
 import {defineComponent, ref, computed,getCurrentInstance} from 'vue'
 import draggable from 'vuedraggable'
-import {UIElementGroup, useStore} from '@/store'
+import {useStore} from '@/store'
 import Item from './Item.vue'
 import useCommits from "@/hooks/useCommits"
 
