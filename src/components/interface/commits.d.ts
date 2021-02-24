@@ -1,12 +1,14 @@
 declare interface Commits {
        
           /**
-            * 暂无说明
+            * 更新数组表
+    
             */
           updateForm(payload:UIElement[]);
        
           /**
-            * 暂无说明
+            * 添加新元素
+    
             */
           AddFromElement(payload:UIElement);
        

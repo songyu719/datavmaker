@@ -5,14 +5,16 @@ export default  ()=>{
     const store = useStore()
     
       /**
-        * 暂无说明
+        * 更新数组表
+    
         */
       function  updateForm(payload:UIElement[]) {
         store.commit("updateForm",payload)
       }
     
       /**
-        * 暂无说明
+        * 添加新元素
+    
         */
       function  AddFromElement(payload:UIElement) {
         store.commit("AddFromElement",payload)
@@ -21,9 +23,11 @@ export default  ()=>{
 
     return {
         
-             updateForm,//暂无说明
+             updateForm,//更新数组表
+    
         
-             AddFromElement,//暂无说明
+             AddFromElement,//添加新元素
+    
         
     }
 }
