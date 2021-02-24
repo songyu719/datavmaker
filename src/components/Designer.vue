@@ -1,6 +1,5 @@
 <template>
-
-    <el-form  label-width="80px" class="designer" >
+    <el-form ref="form" label-width="120px" class="designer">
     <draggable tag="div" v-model="array" group="dragGroup" class="designer" >
 
         <template #item="{element}">
@@ -46,7 +45,7 @@
 
             function handleItemOperate({item,command}:{item:any,command:string}){
                 switch (command) {
-                    case  "remove":
+                    case "remove":
                             remove(array.value,item)
                         break;
                     case "moveUp":
