@@ -3,14 +3,20 @@
   <el-container>
     <el-header>Header</el-header>
     <el-container>
+
       <el-aside width="260px">
         <Layer/>
       </el-aside>
+
       <el-main>
         <Designer />
-
       </el-main>
-      <el-aside width="200px">Aside</el-aside>
+
+      <el-aside>
+
+        <component :is="currentElement.monitor" v-if="currentElement" />
+
+      </el-aside>
     </el-container>
   </el-container>
 
@@ -25,6 +31,7 @@ import {times} from "@/utils/math";
 import {storeKey, useStore} from "@/store";
 import BasicMonitor from "@/components/PropsMonitor/BasicMonitor.vue"
 import ImageMonitor from "@/components/ImageBox/ImageMonitor.vue"
+import TextMonitor from "@/components/Text/TextMonitor.vue";
 
 export default defineComponent({
   name: 'Home',
@@ -32,8 +39,8 @@ export default defineComponent({
     Designer,
     Layer,
     ToolsBar,
-    BasicMonitor
-
+    BasicMonitor,
+    TextMonitor
   },
   setup(props, ctx) {
 
@@ -41,7 +48,7 @@ export default defineComponent({
 
     const dataElementCount = computed(() => store.state.dataElements.length)
     const currentElement = computed(() => {
-      return store.getters.currentElement;
+      return store.getters.CurrentElements;
     })
     onMounted(() => {
       document.oncontextmenu = () => {
@@ -86,6 +93,8 @@ export default defineComponent({
 
 .el-aside {
   height: 100%;
+  width: 260px;
+  padding: 10px;
   border-right: 1px solid @main-border-color;
   border-left: 1px solid @main-border-color;
   background-color: @panelColor;
