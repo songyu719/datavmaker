@@ -2,13 +2,7 @@
     <el-form :model="numberValidateForm"  label-width="80px"  >
         <el-row>
             <el-col :span="24">
-        <el-form-item v-for="item in FormData"
-            :label="item.options.name"
-            :prop="item.id"
-            :rules="item.rules"
-        >
             <component :is="item.componentPack"  v-model="numberValidateForm[item.id]" :type="item.id" />
-        </el-form-item>
             </el-col>
             </el-row>
     </el-form>
