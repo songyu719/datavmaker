@@ -41,6 +41,10 @@ import { useStore} from "@/store";
 import BasicMonitor from "@/components/PropsMonitor/BasicMonitor.vue"
 import TextMonitor from "@/components/Text/TextMonitor.vue";
 import FromRender from "@/components/FromRender/Index.vue"
+import RadioMonitor from "@/components/Radio/RadioMonitor.vue";
+import CheckoutBoxMonitor from "@/components/CheckoutBox/CheckoutBoxMonitor.vue";
+import TextAreaMonitor from "@/components/TextArea/TextAreaMonitor.vue";
+
 export default defineComponent({
   name: 'Home',
   components: {
@@ -49,7 +53,10 @@ export default defineComponent({
     ToolsBar,
     BasicMonitor,
     TextMonitor,
-    FromRender
+    FromRender,
+    RadioMonitor,
+    CheckoutBoxMonitor,
+    TextAreaMonitor
   },
   setup(props, ctx) {
 

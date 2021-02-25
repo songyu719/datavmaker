@@ -32,4 +32,16 @@ declare interface Commits {
             */
           setFormat(payload:string);
        
+          /**
+            *  删除单选框
+    
+            */
+          delRadioVuex(payload:any);
+       
+          /**
+            *  增加单选框
+    
+            */
+          addRadioVuex(payload:any);
+       
 }

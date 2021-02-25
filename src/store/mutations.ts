@@ -79,6 +79,25 @@ const mutations = {
 
             console.log(target)
         }
+    },
+
+    // 删除单选框
+    delRadioVuex(state: State, payload: any) {
+        const target = state.formElements.find(item => item.active);
+        if (target) {
+            target.options.arr.splice(payload.idx, 1);
+        }
+    },
+
+    // 增加单选框
+    addRadioVuex(state: State, payload: any) {
+        const target = state.formElements.find(item => item.active);
+        if (target) {
+            target.options.arr.push({
+                label: `选项${target.options.arr.length + 1}`,
+                value: `${target.options.arr.length + 1}`
+            })
+        }
     }
 
 
