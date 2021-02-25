@@ -41,8 +41,8 @@
           ></button>
         </div>
 
-          <el-form-item v-if="editorItem.monitor === 'TextMonitor'" :label="editorItem.options.name">
-                <component :is="editorItem.componentPack" />
+          <el-form-item :label="editorItem.options.name">
+                <component :is="editorItem.componentPack" :type="editorItem.monitor === 'TextAreaMonitor' ? 'textarea' : ''" />
           </el-form-item>
 
       </div>

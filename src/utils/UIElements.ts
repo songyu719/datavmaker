@@ -30,6 +30,13 @@ const tools: UIElement[] = [
     {
         title: '多行文本',
         active: false,
+        monitor:"TextAreaMonitor",
+        componentPack:"el-input",
+        options:{
+            name:"测试多行",
+            required: true,
+            format:""
+        },
 
         //  componentPack: componentPackArray
     },

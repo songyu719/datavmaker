@@ -42,6 +42,7 @@ import {storeKey, useStore} from "@/store";
 import BasicMonitor from "@/components/PropsMonitor/BasicMonitor.vue"
 import ImageMonitor from "@/components/ImageBox/ImageMonitor.vue"
 import TextMonitor from "@/components/Text/TextMonitor.vue";
+import TextAreaMonitor from "@/components/TextArea/TextAreaMonitor.vue";
 
 export default defineComponent({
   name: 'Home',
@@ -50,7 +51,8 @@ export default defineComponent({
     Layer,
     ToolsBar,
     BasicMonitor,
-    TextMonitor
+    TextMonitor,
+    TextAreaMonitor
   },
   setup(props, ctx) {
 
