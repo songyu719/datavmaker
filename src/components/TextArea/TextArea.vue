@@ -1,17 +1,17 @@
 <template>
+
   <el-form-item :prop="data.id" :label="data.options.name" :rules="data.rules">
-    <el-radio-group>
-      <el-radio v-for="item of data.options.arr" :key="item.value">{{ item.label }}</el-radio>
-    </el-radio-group>
+    <el-input type="textarea" />
   </el-form-item>
+
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from "vue"
+import {defineComponent, PropType, ref} from "vue"
 import {UIElement} from "@/utils/UIElements";
 
 export default defineComponent({
-  name: "Radio",
+  name: "TextArea",
   props: {
     data: {
       type: Object as PropType<UIElement>
@@ -19,6 +19,9 @@ export default defineComponent({
     fromdata: {
       type: Object as PropType<any>
     }
+  },
+  setup() {
+
   }
 })
 </script>

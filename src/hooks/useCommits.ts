@@ -48,6 +48,22 @@ export default  ()=>{
         store.commit("setFormat",payload)
       }
     
+      /**
+        *  删除单选框
+    
+        */
+      function  delRadioVuex(payload:any) {
+        store.commit("delRadioVuex",payload)
+      }
+    
+      /**
+        *  增加单选框
+    
+        */
+      function  addRadioVuex(payload:any) {
+        store.commit("addRadioVuex",payload)
+      }
+    
 
     return {
         
@@ -63,6 +79,12 @@ export default  ()=>{
     
         
              setFormat,//设置文本框格式
+    
+        
+             delRadioVuex,// 删除单选框
+    
+        
+             addRadioVuex,// 增加单选框
     
         
     }

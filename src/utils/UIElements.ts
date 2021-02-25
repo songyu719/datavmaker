@@ -31,7 +31,7 @@ const tools: UIElement[] = [
         title: '多行文本',
         active: false,
         monitor:"TextAreaMonitor",
-        componentPack:"el-input",
+        componentPack:"TextArea",
         options:{
             name:"测试多行",
             required: true
@@ -62,7 +62,7 @@ const tools: UIElement[] = [
         title: '多选',
         active: false,
         monitor:"CheckoutBoxMonitor",
-        componentPack:"CheckoutBox",
+        componentPack:"CheckBox",
         options:{
             name:"测试多选",
             required: true,
