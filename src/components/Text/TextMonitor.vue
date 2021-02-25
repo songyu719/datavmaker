@@ -13,8 +13,8 @@
       </el-form-item>
       <el-form-item label="必填：">
         <el-radio-group v-model="required">
-          <el-radio :label="true">是</el-radio>
-          <el-radio :label="false">否</el-radio>
+          <el-radio :label="false">是</el-radio>
+          <el-radio :label="true">否</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-divider></el-divider>

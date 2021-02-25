@@ -1,6 +1,8 @@
 <template>
     <el-form-item :prop="data.id" :label="data.options.name" :rules="data.rules">
-        <el-input   v-model="fromdata[data.id]" />
+        <el-input   v-model="fromdata[data.id]" >
+            <template #append v-if="data.options.format=='3'">%</template>
+        </el-input>
     </el-form-item>
 </template>
 

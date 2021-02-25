@@ -5,7 +5,6 @@ import tools, {UIElement} from "../utils/UIElements"
 import mutations from "./mutations"
 
 export interface State {
-
     dataElements: UIElement[],
     formElements: UIElement[],
     formRules:rules
