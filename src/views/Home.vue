@@ -37,12 +37,11 @@ import {defineComponent, ref, onMounted, computed} from 'vue';
 import Designer from "../components/Designer.vue";
 import Layer from "../components/Layer/Layer.vue"
 import ToolsBar from "@/components/ToolsBar.vue"
-import { useStore} from "@/store";
+import {times} from "@/utils/math";
+import {storeKey, useStore} from "@/store";
 import BasicMonitor from "@/components/PropsMonitor/BasicMonitor.vue"
-
+import ImageMonitor from "@/components/ImageBox/ImageMonitor.vue"
 import TextMonitor from "@/components/Text/TextMonitor.vue";
-import FromRender from "@/components/FromRender/Index.vue"
-
 
 export default defineComponent({
   name: 'Home',
@@ -51,8 +50,7 @@ export default defineComponent({
     Layer,
     ToolsBar,
     BasicMonitor,
-    TextMonitor,
-    FromRender
+    TextMonitor
   },
   setup(props, ctx) {
 
