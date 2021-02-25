@@ -42,7 +42,7 @@
         </div>
 
           <el-form-item :label="editorItem.options.name">
-            <component :is="editorItem.componentPack" :data="editorItem" :type="editorItem.monitor === 'TextAreaMonitor' ? 'textarea' : ''"/>
+            <component :is="editorItem.componentPack" :data="editorItem" />
           </el-form-item>
 
       </div>

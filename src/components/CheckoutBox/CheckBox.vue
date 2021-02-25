@@ -1,17 +1,21 @@
 <template>
-  <el-checkbox-group>
-    <el-checkbox v-for="item of data.options.arr" :key="item.value">{{ item.label }}</el-checkbox>
+
+
+  <el-checkbox-group v-model="checkList">
+    <el-checkbox  v-for="item in data.options.arr" :label="item.label" :key="item.value"></el-checkbox>
   </el-checkbox-group>
+
 </template>
 
 <script>
-import {defineComponent} from "vue"
+import {defineComponent, ref} from "vue"
 
 export default defineComponent({
   name: "CheckBox",
   props: ["data"],
   setup() {
-
+    const checkList = ref([])
+    return {checkList}
   }
 })
 </script>
