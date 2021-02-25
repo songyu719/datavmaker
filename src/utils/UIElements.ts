@@ -16,11 +16,11 @@ const tools: UIElement[] = [
         title: '单行文本',
         active: false,
         monitor:"TextMonitor",
-        componentPack:"el-input",
+        componentPack:"SingleInput",
         options:{
             name:"测试",
             required: true,
-            format:""
+            format:"0"
         },
         rules: [],
         data: {}

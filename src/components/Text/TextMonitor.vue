@@ -20,7 +20,7 @@
       <el-divider></el-divider>
       <el-form-item label="格式：">
         <el-select v-model="format">
-          <el-option label="不限" value=""></el-option>
+          <el-option label="不限" value="0"></el-option>
           <el-option label="纯数字（整数）" value="1"></el-option>
           <el-option label="金额（保留2位小数）" value="2"></el-option>
           <el-option label="百分比（增加单位符号%）" value="3"></el-option>
@@ -43,7 +43,7 @@ export default defineComponent({
     TitleText
   },
   setup(props, ctx) {
-    const { updateOptions,setRequired } = useCommits();
+    const { updateOptions,setRequired,setFormat } = useCommits();
     const store = useStore();
     const options = computed<ISingleText>(() => {
           return store.getters.CurrentElements.options
@@ -88,6 +88,7 @@ export default defineComponent({
           propName:"format",
           value: v
         })
+        setFormat(v);
       }
     })
 

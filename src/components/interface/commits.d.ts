@@ -18,12 +18,18 @@ declare interface Commits {
           /**
             * 暂无说明
             */
-          updateOptions(payload:{propName:string,value:any});
+          updateOptions(payload:{ propName: string, value: any });
        
           /**
             * 设置是否为必填项目
     
             */
           setRequired(payload:boolean);
+       
+          /**
+            * 设置文本框格式
+    
+            */
+          setFormat(payload:string);
        
 }

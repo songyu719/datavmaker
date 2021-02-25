@@ -28,7 +28,7 @@ export default  ()=>{
       /**
         * 暂无说明
         */
-      function  updateOptions(payload:{propName:string,value:any}) {
+      function  updateOptions(payload:{ propName: string, value: any }) {
         store.commit("updateOptions",payload)
       }
     
@@ -38,6 +38,14 @@ export default  ()=>{
         */
       function  setRequired(payload:boolean) {
         store.commit("setRequired",payload)
+      }
+    
+      /**
+        * 设置文本框格式
+    
+        */
+      function  setFormat(payload:string) {
+        store.commit("setFormat",payload)
       }
     
 
@@ -52,6 +60,9 @@ export default  ()=>{
              updateOptions,//暂无说明
         
              setRequired,//设置是否为必填项目
+    
+        
+             setFormat,//设置文本框格式
     
         
     }

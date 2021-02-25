@@ -1,15 +1,15 @@
 <template>
-    <el-form ref="form" label-width="120px" class="designer">
+    <el-form ref="form" :model = "fromdata" label-width="120px" class="designer">
     <draggable tag="div" v-model="array" group="dragGroup" class="designer" :itemKey="id" >
         <template #item="{element}">
-            <Wrap :editorItem="element"   @onOperate="handleItemOperate" />
+            <Wrap :editorItem="element" :fromdata="fromdata"  @onOperate="handleItemOperate" />
         </template>
     </draggable>
     </el-form>
 </template>
 
 <script lang="ts">
-    import {defineComponent,computed} from "vue";
+    import {defineComponent,computed,reactive} from "vue";
     import {useStore} from '@/store'
     import Wrap from "@/components/Wrap.vue";
     import EChartBar from "@/components/EChartBar/EChartBar.vue";
@@ -59,8 +59,8 @@
                         break;
                 }
             }
-
-            return {array,handleItemOperate}
+            const fromdata = reactive({})
+            return {array,handleItemOperate,fromdata}
         }
     })
 </script>

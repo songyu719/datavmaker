@@ -17,6 +17,8 @@ import Text from "@/components/Text/Text.vue";
 import TextMonitor from "@/components/Text/TextMonitor.vue";
 import EChartBar from "@/components/EChartBar/EChartBar.vue";
 
+import SingleInput from "@/components/Text/SingleInput.vue";
+
 const app = createApp(App)
 app.config.globalProperties.$echarts = echarts;
 app.component("ImageBox", ImageBox)
@@ -24,6 +26,7 @@ app.component("ImageMonitor", ImageMonitor)
 app.component("Text", Text)
 app.component("TextMonitor", TextMonitor)
 app.component("EChartBar",EChartBar)
+app.component("SingleInput",SingleInput)
 app.use(store, storeKey)
 app.use(ElementPlus)
 app.use(Vue3DraggableResizable)

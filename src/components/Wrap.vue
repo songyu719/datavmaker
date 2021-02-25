@@ -40,10 +40,7 @@
               @click="$emit('onOperate', { item: editorItem, command: 'remove' })"
           ></button>
         </div>
-
-          <el-form-item v-if="editorItem.monitor === 'TextMonitor'" :label="editorItem.options.name">
-                <component :is="editorItem.componentPack" />
-          </el-form-item>
+        <component :is="editorItem.componentPack" :data="editorItem" :fromdata="fromdata" />
 
       </div>
     </el-col>
@@ -57,14 +54,15 @@ import useCommits from "@/hooks/useCommits";
 
 export default defineComponent({
   name: "Wrap",
-  props: ["editorItem"],
+  props: ["editorItem","fromdata"],
   setup(props, ctx) {
     const { changeMonitor } = useCommits();
+    const name = ref("")
     function handleClickView() {
       changeMonitor(props.editorItem);
     }
 
-    return {handleClickView};
+    return {handleClickView,name};
   }
 })
 </script>
