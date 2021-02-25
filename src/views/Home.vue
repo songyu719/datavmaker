@@ -43,6 +43,8 @@ import BasicMonitor from "@/components/PropsMonitor/BasicMonitor.vue"
 import ImageMonitor from "@/components/ImageBox/ImageMonitor.vue"
 import TextMonitor from "@/components/Text/TextMonitor.vue";
 import TextAreaMonitor from "@/components/TextArea/TextAreaMonitor.vue";
+import RadioMonitor from "@/components/Radio/RadioMonitor.vue";
+import CheckoutBoxMonitor from "@/components/CheckoutBox/CheckoutBoxMonitor.vue";
 
 export default defineComponent({
   name: 'Home',
@@ -52,7 +54,9 @@ export default defineComponent({
     ToolsBar,
     BasicMonitor,
     TextMonitor,
-    TextAreaMonitor
+    TextAreaMonitor,
+    RadioMonitor,
+    CheckoutBoxMonitor
   },
   setup(props, ctx) {
 

@@ -16,6 +16,8 @@ import ImageMonitor from "@/components/ImageBox/ImageMonitor.vue"
 import Text from "@/components/Text/Text.vue";
 import TextMonitor from "@/components/Text/TextMonitor.vue";
 import EChartBar from "@/components/EChartBar/EChartBar.vue";
+import CheckoutBox from "@/components/CheckoutBox/CheckBox.vue"
+import Radio from "@/components/Radio/Radio.vue"
 
 const app = createApp(App)
 app.config.globalProperties.$echarts = echarts;
@@ -24,6 +26,8 @@ app.component("ImageMonitor", ImageMonitor)
 app.component("Text", Text)
 app.component("TextMonitor", TextMonitor)
 app.component("EChartBar",EChartBar)
+app.component("CheckoutBox",CheckoutBox)
+app.component("Radio",Radio)
 app.use(store, storeKey)
 app.use(ElementPlus)
 app.use(Vue3DraggableResizable)

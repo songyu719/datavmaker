@@ -28,7 +28,7 @@ export default  ()=>{
       /**
         * 暂无说明
         */
-      function  updateOptions(payload:{propName:string,value:any}) {
+      function  updateOptions(payload:{ propName: string, value: any }) {
         store.commit("updateOptions",payload)
       }
     
@@ -38,6 +38,22 @@ export default  ()=>{
         */
       function  setRequired(payload:boolean) {
         store.commit("setRequired",payload)
+      }
+    
+      /**
+        *  删除单选框
+    
+        */
+      function  delRadioVuex(payload:any) {
+        store.commit("delRadioVuex",payload)
+      }
+    
+      /**
+        *  增加单选框
+    
+        */
+      function  addRadioVuex(payload:any) {
+        store.commit("addRadioVuex",payload)
       }
     
 
@@ -52,6 +68,12 @@ export default  ()=>{
              updateOptions,//暂无说明
         
              setRequired,//设置是否为必填项目
+    
+        
+             delRadioVuex,// 删除单选框
+    
+        
+             addRadioVuex,// 增加单选框
     
         
     }

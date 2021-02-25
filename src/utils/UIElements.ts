@@ -34,8 +34,7 @@ const tools: UIElement[] = [
         componentPack:"el-input",
         options:{
             name:"测试多行",
-            required: true,
-            format:""
+            required: true
         },
 
         //  componentPack: componentPackArray
@@ -43,13 +42,38 @@ const tools: UIElement[] = [
     {
         title: '单选',
         active: false,
+        monitor:"RadioMonitor",
+        componentPack:"Radio",
+        options:{
+            name:"测试单选",
+            required: true,
+            arr: [{
+                label: "选项1",
+                value: "1"
+            },{
+                label: "选项2",
+                value: "2"
+            }]
+        }
 
         //  componentPack: componentPackArray
     },
     {
         title: '多选',
         active: false,
-
+        monitor:"CheckoutBoxMonitor",
+        componentPack:"CheckoutBox",
+        options:{
+            name:"测试多选",
+            required: true,
+            arr: [{
+                label: "选项1",
+                value: "1"
+            },{
+                label: "选项2",
+                value: "2"
+            }]
+        }
         //  componentPack: componentPackArray
     },
     {

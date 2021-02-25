@@ -1,14 +1,15 @@
 import {State} from "@/store/index";
 import {UIElement} from "@/utils/UIElements";
 
-import {guid,toJs} from "@/utils/tools"
-import {toRaw,unref} from 'vue'
+import {guid, toJs} from "@/utils/tools"
+import {toRaw, unref} from 'vue'
+
 const mutations = {
     updateForm(state: State, payload: UIElement[]) {
 
-        payload =  toJs(payload)
-        for(const pay of payload){
-            if(!pay.id){
+        payload = toJs(payload)
+        for (const pay of payload) {
+            if (!pay.id) {
                 pay.id = guid()
             }
         }
@@ -22,41 +23,59 @@ const mutations = {
         state.formElements.push(payload)
     },
     changeMonitor(state: State, payload: UIElement) {
-        state.formElements.forEach(item=>{
+        state.formElements.forEach(item => {
             item.active = item.id == payload.id;
         })
-        console.log( toJs(state.formElements) )
+        console.log(toJs(state.formElements))
     },
-    updateOptions(state:State,payload:{propName:string,value:any}){
-        const target = state.formElements.find(item=>item.active)
-        if(target){
+    updateOptions(state: State, payload: { propName: string, value: any }) {
+        const target = state.formElements.find(item => item.active)
+        if (target) {
             target.options[payload.propName] = payload.value
         }
     },
 
 
     //设置是否为必填项目
-    setRequired(state:State,payload:boolean){
-        const target = state.formElements.find(item=>item.active)
-        if(target){
-            const requiredRule =  target.rules.find((item:any) => item.hasOwnProperty("required"));
-            if (payload){
-               if(requiredRule){
-                   requiredRule.required = true
-               }else{
-                   target.rules.push({ required: true, message: `${target.options.name}为必填项`, trigger: 'change' })
-               }
-            }else{
-                if(requiredRule){
+    setRequired(state: State, payload: boolean) {
+        const target = state.formElements.find(item => item.active)
+        if (target) {
+            const requiredRule = target.rules.find((item: any) => item.hasOwnProperty("required"));
+            if (payload) {
+                if (requiredRule) {
+                    requiredRule.required = true
+                } else {
+                    target.rules.push({required: true, message: `${target.options.name}为必填项`, trigger: 'change'})
+                }
+            } else {
+                if (requiredRule) {
                     requiredRule.required = false
                 }
             }
-            target.options.required =payload
+            target.options.required = payload
 
         }
-        console.log( toJs(state.formElements) )
-    }
+        console.log(toJs(state.formElements))
+    },
 
+    // 删除单选框
+    delRadioVuex(state: State, payload: any) {
+        const target = state.formElements.find(item => item.active);
+        if (target) {
+            target.options.arr.splice(payload.idx, 1);
+        }
+    },
+
+    // 增加单选框
+    addRadioVuex(state: State, payload: any) {
+        const target = state.formElements.find(item => item.active);
+        if (target) {
+            target.options.arr.push({
+                label: `选项${target.options.arr.length + 1}`,
+                value: `${target.options.arr.length + 1}`
+            })
+        }
+    }
 
 
 }

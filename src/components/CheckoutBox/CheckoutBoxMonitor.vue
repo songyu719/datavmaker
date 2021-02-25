@@ -1,9 +1,9 @@
 <template>
   <div class="box">
     <TitleText name="配置项"/>
-    <el-form ref="form" label-width="60px">
+    <el-form ref="form" label-width="100px">
       <el-form-item label="元件：">
-        <el-input size="small" disabled placeholder="多行文本"/>
+        <el-input size="small" disabled placeholder="单选框"/>
       </el-form-item>
       <el-form-item label="ID：">
         <el-input size="small" v-model="id" disabled />
@@ -17,6 +17,12 @@
           <el-radio :label="false">否</el-radio>
         </el-radio-group>
       </el-form-item>
+      <el-divider></el-divider>
+      <el-form-item v-for="(item ,index) of arr" :key="item.value" :label="`选项${++index}`" style="position: relative;">
+        <el-input size="small" v-model="item.label" />
+        <i class="el-icon-circle-close" style="position: absolute;right: 0;top: 0;" @click="delRadio(index)"></i>
+      </el-form-item>
+      <el-button type="primary" @click="addRadio">添加选项</el-button>
     </el-form>
   </div>
 </template>
@@ -29,12 +35,12 @@ import ISingleText from "@/components/Text/ISingleText";
 import useCommits from "@/hooks/useCommits";
 
 export default defineComponent({
-  name: "TextAreaMonitor",
+  name: "RadioMonitor",
   components: {
     TitleText
   },
   setup(props, ctx) {
-    const { updateOptions,setRequired } = useCommits();
+    const { updateOptions,setRequired, delRadioVuex, addRadioVuex } = useCommits();
     const store = useStore();
     const options = computed<ISingleText>(() => {
           return store.getters.CurrentElements.options
@@ -70,7 +76,25 @@ export default defineComponent({
       }
     })
 
-    return { name, required, id }
+    const arr = computed({
+      get() {
+        return options.value.arr
+      },
+      set(v: string) {
+        console.log("设置");
+      }
+    })
+
+    function delRadio(idx: number) {
+      delRadioVuex(idx);
+    }
+
+    function addRadio() {
+      addRadioVuex("")
+    }
+
+
+    return { name, required, id, arr, delRadio, addRadio }
   }
 })
 </script>
