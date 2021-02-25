@@ -9,16 +9,12 @@ import 'element-plus/lib/theme-chalk/index.css';
 import "reset-css"
 import "./global.css"
 import * as echarts from "echarts"
-
-
 import ImageBox from "@/components/ImageBox/ImageBox.vue"
 import ImageMonitor from "@/components/ImageBox/ImageMonitor.vue"
 import Text from "@/components/Text/Text.vue";
 import TextMonitor from "@/components/Text/TextMonitor.vue";
 import EChartBar from "@/components/EChartBar/EChartBar.vue";
-
 import SingleInput from "@/components/Text/SingleInput.vue";
-
 const app = createApp(App)
 app.config.globalProperties.$echarts = echarts;
 app.component("ImageBox", ImageBox)
