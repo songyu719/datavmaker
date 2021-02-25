@@ -5,11 +5,15 @@ import {guid,toJs} from "@/utils/tools"
 import {toRaw,unref} from 'vue'
 const mutations = {
     updateForm(state: State, payload: UIElement[]) {
-        state.formElements = payload
 
-        for(const item of state.formElements){
-            item.id = guid();
+        payload =  toJs(payload)
+        for(const pay of payload){
+            if(!pay.id){
+                pay.id = guid()
+            }
         }
+
+        state.formElements = payload;
 
     },
     AddFromElement(state: State, payload: UIElement) {
