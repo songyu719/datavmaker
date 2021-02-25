@@ -1,11 +1,9 @@
 <template>
     <el-form ref="form" label-width="120px" class="designer">
-    <draggable tag="div" v-model="array" group="dragGroup" class="designer" >
-
+    <draggable tag="div" v-model="array" group="dragGroup" class="designer" :itemKey="id" >
         <template #item="{element}">
             <Wrap :editorItem="element"   @onOperate="handleItemOperate" />
         </template>
-
     </draggable>
     </el-form>
 </template>

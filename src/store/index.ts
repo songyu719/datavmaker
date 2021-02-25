@@ -8,6 +8,11 @@ export interface State {
 
     dataElements: UIElement[],
     formElements: UIElement[],
+    formRules:rules
+}
+
+export interface rules {
+      [key:string]:any[]
 }
 
 
@@ -17,6 +22,8 @@ export default createStore<State>({
     state: {
         dataElements: tools,
         formElements: [],
+        formRules:{}
+        
     },
     mutations,
     actions: {},

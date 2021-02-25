@@ -6,7 +6,7 @@
         <el-input size="small" disabled placeholder="单行文本"/>
       </el-form-item>
       <el-form-item label="ID：">
-        <el-input size="small"/>
+        <el-input size="small" v-model="id" disabled />
       </el-form-item>
       <el-form-item label="名称：">
         <el-input size="small" v-model="name"/>
@@ -43,7 +43,7 @@ export default defineComponent({
     TitleText
   },
   setup(props, ctx) {
-    const { updateOptions } = useCommits();
+    const { updateOptions,setRequired } = useCommits();
     const store = useStore();
     const options = computed<ISingleText>(() => {
           return store.getters.CurrentElements.options
@@ -66,10 +66,16 @@ export default defineComponent({
         return options.value.required
       },
       set(v: boolean) {
-        updateOptions({
-          propName:"required",
-          value: v
-        })
+        setRequired(v)
+      }
+    })
+
+    const id = computed({
+      get(){
+        return store.getters.CurrentElements.id
+      },
+      set(v){
+        console.log(v)
       }
     })
 
@@ -85,7 +91,7 @@ export default defineComponent({
       }
     })
 
-    return { name, required, format }
+    return { name, required, format,id }
   }
 })
 </script>

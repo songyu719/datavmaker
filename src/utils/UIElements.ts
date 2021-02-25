@@ -16,6 +16,7 @@ const tools: UIElement[] = [
         title: '单行文本',
         active: false,
         monitor:"TextMonitor",
+        componentPack:"el-input",
         options:{
             name:"测试",
             required: true,

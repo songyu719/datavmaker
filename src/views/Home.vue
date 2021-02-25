@@ -1,7 +1,10 @@
 <template>
 
   <el-container>
-    <el-header>Header</el-header>
+    <el-header>
+      <el-button @click="dialogTableVisible=true">预览</el-button>
+
+    </el-header>
     <el-container>
 
       <el-aside width="260px">
@@ -16,8 +19,15 @@
 
         <component :is="currentElement.monitor" v-if="currentElement" />
 
+
       </el-aside>
     </el-container>
+
+      <el-dialog title="收货地址" v-model="dialogTableVisible">
+      
+
+      </el-dialog>
+
   </el-container>
 
 </template>
@@ -55,8 +65,9 @@ export default defineComponent({
         return false;
       }
     });
+    const dialogTableVisible = ref(false)
 
-    return { dataElementCount, currentElement}
+    return { dataElementCount, currentElement,dialogTableVisible}
   }
 
 });

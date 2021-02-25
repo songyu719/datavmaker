@@ -15,6 +15,7 @@
     "element-plus": "^1.0.1-beta.27",
     "monaco-editor": "^0.22.3",
     "reset-css": "^5.0.1",
+    "uuid": "^8.3.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vue3-draggable-resizable": "git+https://github.com/songyu719/vue3-draggable-resizable.git",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "^14.14.22",
+    "@types/uuid": "^8.3.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",

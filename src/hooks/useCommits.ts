@@ -5,16 +5,14 @@ export default  ()=>{
     const store = useStore()
     
       /**
-        * 更新数组表
-    
+        * 暂无说明
         */
       function  updateForm(payload:UIElement[]) {
         store.commit("updateForm",payload)
       }
     
       /**
-        * 添加新元素
-    
+        * 暂无说明
         */
       function  AddFromElement(payload:UIElement) {
         store.commit("AddFromElement",payload)
@@ -34,18 +32,27 @@ export default  ()=>{
         store.commit("updateOptions",payload)
       }
     
+      /**
+        * 设置是否为必填项目
+    
+        */
+      function  setRequired(payload:boolean) {
+        store.commit("setRequired",payload)
+      }
+    
 
     return {
         
-             updateForm,//更新数组表
-    
+             updateForm,//暂无说明
         
-             AddFromElement,//添加新元素
-    
+             AddFromElement,//暂无说明
         
              changeMonitor,//暂无说明
         
              updateOptions,//暂无说明
+        
+             setRequired,//设置是否为必填项目
+    
         
     }
 }

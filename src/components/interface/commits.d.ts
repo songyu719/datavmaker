@@ -1,14 +1,12 @@
 declare interface Commits {
        
           /**
-            * 更新数组表
-    
+            * 暂无说明
             */
           updateForm(payload:UIElement[]);
        
           /**
-            * 添加新元素
-    
+            * 暂无说明
             */
           AddFromElement(payload:UIElement);
        
@@ -21,5 +19,11 @@ declare interface Commits {
             * 暂无说明
             */
           updateOptions(payload:{propName:string,value:any});
+       
+          /**
+            * 设置是否为必填项目
+    
+            */
+          setRequired(payload:boolean);
        
 }

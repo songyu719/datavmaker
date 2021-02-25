@@ -42,7 +42,7 @@
         </div>
 
           <el-form-item v-if="editorItem.monitor === 'TextMonitor'" :label="editorItem.options.name">
-            <el-input></el-input>
+                <component :is="editorItem.componentPack" />
           </el-form-item>
 
       </div>
