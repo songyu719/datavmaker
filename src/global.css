@@ -16,3 +16,7 @@ body{
     color: #2c3e50;
     height: 100%;
 }
+
+.el-form-item__content{
+    text-align: left;
+}
