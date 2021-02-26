@@ -13,42 +13,7 @@
     </a-layout-header>
     <a-layout class="layout_con">
       <a-layout-sider>
-        <a-menu
-            theme="dark"
-            mode="inline"
-            :defaultOpenKeys="defaultOpenKeys"
-            :selectedKeys="[$route.path]"
-            @click="menuClick"
-        >
-          <template v-for="item in router.children">
-            <template v-if="!item.hidden">
-              <a-menu-item
-                  v-if="checkChildren(item)"
-                  :key="item.path"
-                  :class="{
-                  'ant-menu-item-selected':
-                    $route.path === item.redirect ||
-                    $route.meta.parent === item.name
-                }"
-              >
-                <i :class="'layout_icon iconfont ' + item.meta.icon"></i>
-                <span>{{ item.meta.title }}</span>
-              </a-menu-item>
-
-              <a-sub-menu v-else :key="item.path">
-                <span slot="title">
-                  <i :class="'layout_icon iconfont ' + item.meta.icon"></i>
-                  <span>{{ item.meta.title }}</span>
-                </span>
-                <template v-for="citem in item.children" :key="citem.path">
-                  <a-menu-item >
-                    <span>{{ citem.meta.title }}</span>
-                  </a-menu-item>
-                </template>
-              </a-sub-menu>
-            </template>
-          </template>
-        </a-menu>
+        <Menu></Menu>
       </a-layout-sider>
       <div class="layout_content">
         <a-layout-content class="container">
@@ -62,8 +27,12 @@
 <script lang="ts">
 import { defineComponent, reactive,toRefs,onMounted } from "vue";
 import { pageRouter } from "@/router";
+import Menu from "@/views/layout/Menu";
 
 export default defineComponent({
+  components:{
+    Menu
+  },
   setup() {
     const state = reactive({
       defaultOpenKeys: "",
@@ -80,7 +49,10 @@ export default defineComponent({
     }
 
     function checkChildren() {
-      // todo
+      if (!item || !item.children) return true;
+      const cur = item.children.length;
+      const child = item.children.filter((c: any) => !c.hidden).length;
+      return cur !== child;
     }
 
     return { ...toRefs(state), menuClick, checkChildren }
