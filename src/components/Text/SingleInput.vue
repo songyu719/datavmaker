@@ -8,7 +8,7 @@
 
 <script lang="ts">
     import { PropType,defineComponent } from 'vue'
-    import {UIElement} from "../../utils/UIElements";
+    import {UIElement} from "@/utils/UIElements";
     export default defineComponent({
         name: "SingleInput",
         props:{

@@ -18,6 +18,8 @@ import SingleInput from "@/components/Text/SingleInput.vue";
 import Radio from "@/components/Radio/Radio.vue";
 import CheckBox from "@/components/CheckoutBox/CheckBox.vue";
 import TextArea from "@/components/TextArea/TextArea.vue";
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
 
 const app = createApp(App)
 app.config.globalProperties.$echarts = echarts;
@@ -32,6 +34,7 @@ app.component("CheckBox",CheckBox)
 app.component("TextArea",TextArea)
 app.use(store, storeKey)
 app.use(ElementPlus)
+app.use(Antd)
 app.use(Vue3DraggableResizable)
 app.use(router)
 app.mount('#app')

@@ -1,6 +1,6 @@
 const path = require('path')
 const  MonacoWebpackPlugin  = require('monaco-editor-webpack-plugin')
-const  CopyPlugin  = require('copy-webpack-plugin')
+// const  CopyPlugin  = require('copy-webpack-plugin')
 module.exports = {
     chainWebpack: config => {
         const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
@@ -12,21 +12,21 @@ module.exports = {
             new MonacoWebpackPlugin()
         )
 
-        let  interfaceFiles = [
+        // let  interfaceFiles = [
+        //
+        // ]
+        //      interfaceFiles.push({
+        //          from:__dirname+"/src/components/interface/IImageBox.ts", to:__dirname+"/dist/interface"
+        //      })
+        //
+        //
+        // config.plugins.push( new CopyPlugin({
+        //     patterns:interfaceFiles,
+        //     options: {
+        //         concurrency: 100,
+        //     },
+        // }))
 
-        ]
-             interfaceFiles.push({
-                 from:__dirname+"/src/components/interface/IImageBox.ts", to:__dirname+"/dist/interface"
-             })
-
-
-        config.plugins.push( new CopyPlugin({
-            patterns:interfaceFiles,
-            options: {
-                concurrency: 100,
-            },
-        }))
-        console.log(config.plugins)
 
     },
     css: {

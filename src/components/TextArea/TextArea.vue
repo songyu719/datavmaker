@@ -1,7 +1,7 @@
 <template>
 
   <el-form-item :prop="data.id" :label="data.options.name" :rules="data.rules">
-    <el-input type="textarea" />
+    <el-input v-model="fromdata[data.id]" type="textarea" />
   </el-form-item>
 
 </template>
