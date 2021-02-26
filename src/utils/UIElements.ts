@@ -36,7 +36,6 @@ const tools: UIElement[] = [
             name:"测试多行",
             required: true
         },
-
         //  componentPack: componentPackArray
     },
     {
@@ -55,7 +54,6 @@ const tools: UIElement[] = [
                 value: "2"
             }]
         }
-
         //  componentPack: componentPackArray
     },
     {

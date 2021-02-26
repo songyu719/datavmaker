@@ -1,5 +1,4 @@
 import {UIElement} from "@/utils/UIElements";
-import {removeAt} from "@/utils/array"
 export function SingleInputFormat(type:string,target:UIElement) {
     const number = /^[0-9]*$/
     const double = /^[0-9]+\.[0-9]{2}$/
@@ -11,7 +10,6 @@ export function SingleInputFormat(type:string,target:UIElement) {
             switch (type) {
                 case "1":
                     if(!number.test(value)){
-
                         rule.message ="请填入数字"
                         callback(new Error("请填入数字"))
                     }

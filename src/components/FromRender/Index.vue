@@ -1,5 +1,5 @@
 <template>
-    <el-form :model="numberValidateForm"  label-width="80px"  >
+    <el-form :model="numberValidateForm" ref="form" label-width="80px"  >
         <el-row>
             <el-col :span="24">
 
@@ -7,7 +7,7 @@
 
             </el-col>
             </el-row>
-        <el-button>提交</el-button>
+        <el-button @click="SubmitForm">提交</el-button>
     </el-form>
 </template>
 
@@ -25,8 +25,20 @@
             const numberValidateForm = reactive({
 
             })
-            return { formElements ,numberValidateForm}
-        }
+            const form = ref()
+            function SubmitForm() {
+                form.value.validate((valid:boolean)=>{
+                    if(valid){
+                        console.log("表单验证通过")
+                    }else{
+                        console.log("不通过")
+                    }
+                })
+            }
+            return { formElements ,numberValidateForm,form,SubmitForm}
+            }
+
+
     })
 </script>
 
